@@ -114,7 +114,6 @@
             "footer.navigation": "Navigasyon",
             "footer.support": "Sipò ak Kondisyon",
             "footer.privacy": "Politik Konfidansyalite",
-            "footer.delete": "Efase Kont",
             "footer.copyright": "© 2026 Intop. Tout dwa rezève. Konekte moun atravè rechaj ki an sekirite ak otomatik nan nwaj.",
             "footer.terms": "Kondisyon"
         }
