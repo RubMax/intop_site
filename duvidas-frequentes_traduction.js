@@ -191,7 +191,6 @@
 
     // ---- DOM elements ----
     const langButtons = document.querySelectorAll('.lang-btn');
-    const translatableElements = document.querySelectorAll('[data-i18n]');
 
     // ---- Helper functions ----
     function setLang(lang) {
@@ -209,39 +208,50 @@
     }
 
     function translatePage(lang) {
-        const dict = translations[lang];
-        if (!dict) return;
+    const dict = translations[lang];
 
-        translatableElements.forEach(el => {
-            const key = el.dataset.i18n;
-            if (dict[key] !== undefined) {
-                // Check if element contains HTML (like the banner title with <span>)
-                if (key === 'banner.title' && el.querySelector('span')) {
-                    el.innerHTML = dict[key];
-                } else {
-                    // For FAQ answers with line breaks, preserve <br> tags
-                    if (key === 'faq.16.answer') {
-                        el.innerHTML = dict[key].replace(/\n/g, '<br>');
-                    } else {
-                        el.textContent = dict[key];
-                    }
-                }
+    if (!dict) return;
+
+    // Rechercher les éléments à traduire à chaque changement de langue
+    const translatableElements = document.querySelectorAll('[data-i18n]');
+
+    translatableElements.forEach(el => {
+        const key = el.dataset.i18n;
+
+        if (dict[key] !== undefined) {
+
+            if (key === 'banner.title') {
+                el.innerHTML = dict[key];
+
+            } else if (key === 'faq.16.answer') {
+                el.innerHTML = dict[key].replace(/\n/g, '<br>');
+
+            } else {
+                el.textContent = dict[key];
             }
-        });
-    }
+        }
+    });
+}
 
     // ---- FAQ Toggle ----
     function initFaqToggle() {
         const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
+        
+        faqItems.forEach(function(item, index) {
             const header = item.querySelector('.faq-header');
             if (header) {
-                header.addEventListener('click', function() {
+                // Remove any existing event listeners by cloning
+                const newHeader = header.cloneNode(true);
+                header.parentNode.replaceChild(newHeader, header);
+                
+                newHeader.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     // Toggle the clicked item
                     item.classList.toggle('active');
                 });
             }
         });
+        
         // Open first FAQ by default
         if (faqItems.length > 0) {
             faqItems[0].classList.add('active');
@@ -282,7 +292,7 @@
             });
         }
 
-        // FAQ toggle
+        // FAQ toggle - initialize after DOM is ready
         initFaqToggle();
     }
 
