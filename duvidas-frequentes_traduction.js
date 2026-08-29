@@ -137,16 +137,16 @@
 
             // Banner
             "banner.title": "Kesyon yo <span>poze souvan</span>",
-            "banner.subtitle": "Jwenn repons vit pou kesyon prensipal yo sou itilizasyon aplikasyon an.",
+            "banner.subtitle": "Jwenn repons vit sou tout kesyon ou ta vle poze sou aplikasyon an.",
 
             // FAQ - 16 questions
             "faq.1.question": "Konbyen tan li pran pou rechaj la rive sou telefòn destinasyon an?",
-            "faq.1.answer": "Pwosesis la prèske enstantane! Gras a entegrasyon otomatik nou an ak pi gwo distribitè telefoni nan mond lan, rechaj la souvan kredite nan 2 minit apre konfimasyon peman an atravè Pix.",
-            "faq.2.question": "Ki limit valè pa transaksyon?",
-            "faq.2.answer": "Pou rezon konfòmite ak sekirite, valè rechaj ki pèmèt pa operasyon an konfigire ant R$ 10,00 ak R$ 100,00.",
+            "faq.1.answer": "Pwosesis la fet nan 2 ak 3 segond! Gras a entegrasyon otomatik nou an ak pi gwo distribitè telefoni nan mond lan, rechaj la souvan kredite nan 2 minit apre konfimasyon peman an atravè Pix.",
+            "faq.2.question": "Konbyen kob rechaj mwen ka voye?",
+            "faq.2.answer": "Pou rezon sekirite, valè rechaj ki pèmèt pa operasyon an se ant R$ 10,00 ak R$ 100,00.",
             "faq.3.question": "Ki peyi ak operatè ki aksepte?",
-            "faq.3.answer": "Nou sipòte voye saldo pou peyi prensipal nan Amerik Latin ak Nò, Ewòp ak plizyè lòt kontinan. Operatè popilè tankou MEO, AT&T, Claro, T-Mobile ak Viva yo sipòte.",
-            "faq.4.question": "Kisa k ap pase si m tape move nimewo telefòn nan?",
+            "faq.3.answer": "Nou voye rechaj pou peyi prensipal nan Amerik Latin ak Nò, Ewòp ak plizyè lòt kontinan. Operatè popilè tankou MEO, AT&T, Claro, T-Mobile ak Viva yo sipòte.",
+            "faq.4.question": "Kisa k ap pase si m tape yon move nimewo telefòn?",
             "faq.4.answer": "Nou sijere atansyon double lè w ap tape. Si nimewo a valab epi li resevwa rechaj la, nou pa ka ranvèse pwosesis la. Si nimewo a pa valab oswa voye a echwe, platfòm nou an pral anile transaksyon an otomatikman pou asire w pa gen pwoblèm.",
             "faq.5.question": "Kijan m ka kontakte sipò Intop?",
             "faq.5.answer": "Ou ka ale nan seksyon sipò nan meni aplikasyon an oswa voye yon imèl ak enfòmasyon transaksyon ou a dirèkteman nan adrès suporte@intop.com.br.",
@@ -183,7 +183,6 @@
             "footer.navigation": "Navigasyon",
             "footer.support": "Sipò ak Kondisyon",
             "footer.privacy": "Politik Konfidansyalite",
-            "footer.delete": "Efase Kont",
             "footer.copyright": "© 2026 Intop. Tout dwa rezève. Konekte moun atravè rechaj ki an sekirite ak otomatik nan nwaj.",
             "footer.terms": "Kondisyon"
         }
