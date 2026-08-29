@@ -40,7 +40,6 @@
             "footer.navigation": "Navegação",
             "footer.support": "Suporte e Termos",
             "footer.privacy": "Política de Privacidade",
-            "footer.delete": "Exclusão de Conta",
             "footer.copyright": "© 2026 Intop. Todos os direitos reservados. Conectando pessoas através de recargas seguras e automatizadas em nuvem.",
             "footer.terms": "Termos"
         },

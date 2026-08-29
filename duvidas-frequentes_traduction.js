@@ -13,7 +13,6 @@
             "nav.how": "Como Funciona",
             "nav.benefits": "Vantagens",
             "nav.faq": "Dúvidas Frequentes",
-            "nav.download": "Baixar App",
 
             // Banner
             "banner.title": "Dúvidas <span>Frequentes</span>",
@@ -63,7 +62,6 @@
             "footer.navigation": "Navegação",
             "footer.support": "Suporte e Termos",
             "footer.privacy": "Política de Privacidade",
-            "footer.delete": "Exclusão de Conta",
             "footer.copyright": "© 2026 Intop. Todos os direitos reservados. Conectando pessoas através de recargas seguras e automatizadas em nuvem.",
             "footer.terms": "Termos"
         },
