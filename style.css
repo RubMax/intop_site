@@ -716,7 +716,7 @@ header {
     background: var(--gradient-dark);
     color: var(--white);
     text-align: center;
-    padding: 6rem 2rem;
+    padding: 1rem 2rem;
     position: relative;
     overflow: hidden;
 }
