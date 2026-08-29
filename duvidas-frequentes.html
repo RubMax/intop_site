@@ -9,42 +9,324 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== LANGUAGE SWITCHER - TOUJOURS VISIBLE ===== */
+        .lang-switcher {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 0.5rem;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            min-width: 38px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #00c853, #00e676);
+            border-color: #00c853;
+            color: #0a0a1a;
+            box-shadow: 0 0 20px rgba(0, 200, 80, 0.4), inset 0 0 12px rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            font-weight: 800;
+        }
+
+        .lang-btn.active:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 28px rgba(0, 200, 80, 0.5);
+        }
+
+        /* ===== NAVIGATION STRUCTURE ===== */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 2rem;
+            background: rgba(10, 10, 26, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 100;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            flex-shrink: 0;
+            margin-right: 0.5rem;
+        }
+
+        .logo img {
+            height: 32px;
+        }
+
+        /* Groupe: boutons langue + liens nav */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #00e676;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #00c853, #00e676);
+            color: #0a0a1a !important;
+            padding: 0.4rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 700 !important;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 200, 80, 0.3);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 200, 80, 0.4);
+            color: #0a0a1a !important;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0 0.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        /* Mobile Nav Drawer */
+        .mobile-nav {
+            display: none;
+            background: rgba(10, 10, 26, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .mobile-nav.open {
+            display: block;
+        }
+
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .mobile-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-links a:hover,
+        .mobile-links a.active {
+            color: #00e676;
+        }
+
+        .mobile-links .btn-download {
+            display: inline-block;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== FAQ TOGGLE ===== */
+        .faq-item .faq-body {
+            display: none;
+            padding: 1rem 0;
+            color: #555;
+            line-height: 1.6;
+        }
+        .faq-item.active .faq-body {
+            display: block;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        .faq-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            user-select: none;
+        }
+        .faq-header:hover {
+            opacity: 0.8;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.5rem;
+            font-weight: 300;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.75rem 1rem;
+                flex-wrap: nowrap;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-right {
+                gap: 0.5rem;
+                flex: 0 1 auto;
+            }
+
+            .lang-switcher {
+                margin-right: 0;
+                gap: 4px;
+            }
+
+            .lang-btn {
+                font-size: 0.55rem;
+                padding: 4px 8px;
+                min-width: 32px;
+                border-width: 1.5px;
+            }
+
+            .lang-btn.active {
+                transform: scale(1.02);
+            }
+
+            .mobile-nav.open {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lang-btn {
+                font-size: 0.5rem;
+                padding: 3px 6px;
+                min-width: 28px;
+                border-width: 1.5px;
+            }
+
+            .logo img {
+                height: 28px;
+            }
+
+            .nav-container {
+                padding: 0.5rem 0.75rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="nav-container">
+            <!-- Logo -->
             <a href="index.html" class="logo">
-                <!-- Wordmark image template with text fallback -->
                 <img src="logotxt.png" alt="Intop" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><span class="logo-fallback" style="display:none;">Intop<span style="color:var(--accent-green);">.</span></span>
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="como-funciona.html">Como Funciona</a></li>
-                <!--li><a href="simulador.html">Simulador</a></li-->
-                <li><a href="vantagens.html">Vantagens</a></li>
-                <li><a href="duvidas-frequentes.html" class='active'>Dúvidas Frequentes</a></li>
-                <li><a href="#baixar" class="btn-download">Baixar App</a></li>
-            </ul>
-            <button class="hamburger" aria-label="Menu">&#9776;</button>
+
+            <!-- Groupe: Boutons langue + Liens nav -->
+            <div class="nav-right">
+                <!-- Language switcher - TOUJOURS VISIBLE -->
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="pt">🇧🇷 PT</button>
+                    <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
+                    <button class="lang-btn" data-lang="ht">🇭🇹 HT</button>
+                </div>
+
+                <!-- Navigation links (desktop) -->
+                <ul class="nav-links">
+                    <li><a href="index.html" data-i18n="nav.home">Início</a></li>
+                    <li><a href="como-funciona.html" data-i18n="nav.how">Como Funciona</a></li>
+                    <li><a href="vantagens.html" data-i18n="nav.benefits">Vantagens</a></li>
+                    <li><a href="duvidas-frequentes.html" class="active" data-i18n="nav.faq">Dúvidas Frequentes</a></li>
+                    <li><a href="#baixar" class="btn-download" data-i18n="nav.download">Baixar App</a></li>
+                </ul>
+
+                <!-- Hamburger (mobile) -->
+                <button class="hamburger" aria-label="Menu">&#9776;</button>
+            </div>
         </nav>
+
         <!-- Mobile Nav Drawer -->
         <div class="mobile-nav">
             <div class="mobile-links">
-                <a href="index.html">Início</a>
-                <a href="como-funciona.html">Como Funciona</a>
-                <!--a href="simulador.html">Simulador</a-->
-                <a href="vantagens.html">Vantagens</a>
-                <a href="duvidas-frequentes.html" class='active'>Dúvidas Frequentes</a>
-                <a href="#baixar" class="btn-download" style="margin-top: 1rem;">Baixar App</a>
+                <a href="index.html" data-i18n="nav.home">Início</a>
+                <a href="como-funciona.html" data-i18n="nav.how">Como Funciona</a>
+                <a href="vantagens.html" data-i18n="nav.benefits">Vantagens</a>
+                <a href="duvidas-frequentes.html" class="active" data-i18n="nav.faq">Dúvidas Frequentes</a>
+                <a href="#baixar" class="btn-download" style="margin-top: 1rem;" data-i18n="nav.download">Baixar App</a>
             </div>
         </div>
     </header>
 
-    
     <!-- Page Banner -->
     <section class="page-banner">
-        <h1>Dúvidas <span>Frequentes</span></h1>
-        <p>Encontre respostas rápidas para as principais perguntas sobre a utilização do aplicativo.</p>
+        <h1 data-i18n="banner.title">Dúvidas <span>Frequentes</span></h1>
+        <p data-i18n="banner.subtitle">Encontre respostas rápidas para as principais perguntas sobre a utilização do aplicativo.</p>
     </section>
 
     <!-- FAQ Section -->
@@ -52,171 +334,182 @@
         <div class="faq-wrapper">
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Quanto tempo demora para a recarga cair no celular de destino?</span>
+                    <span data-i18n="faq.1.question">Quanto tempo demora para a recarga cair no celular de destino?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>O processo é praticamente instantâneo! Graças à nossa integração automatizada com as maiores distribuidoras de telefonia do mundo, a recarga costuma ser creditada em até 2 minutos após a confirmação do pagamento via Pix.</p>
+                    <p data-i18n="faq.1.answer">O processo é praticamente instantâneo! Graças à nossa integração automatizada com as maiores distribuidoras de telefonia do mundo, a recarga costuma ser creditada em até 2 minutos após a confirmação do pagamento via Pix.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Quais são os limites de valor por transação?</span>
+                    <span data-i18n="faq.2.question">Quais são os limites de valor por transação?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Por questões de conformidade e segurança, o valor de recarga permitido por operação é configurado no intervalo de R$ 10,00 a R$ 100,00.</p>
+                    <p data-i18n="faq.2.answer">Por questões de conformidade e segurança, o valor de recarga permitido por operação é configurado no intervalo de R$ 10,00 a R$ 100,00.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Quais países e operadoras são aceitos?</span>
+                    <span data-i18n="faq.3.question">Quais países e operadoras são aceitos?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Apoiamos o envio de saldo para os principais países das Américas Latina e do Norte, Europa e vários outros continentes. Operadoras populares como MEO, AT&T, Claro, T-Mobile e Viva são suportadas.</p>
+                    <p data-i18n="faq.3.answer">Apoiamos o envio de saldo para os principais países das Américas Latina e do Norte, Europa e vários outros continentes. Operadoras populares como MEO, AT&T, Claro, T-Mobile e Viva são suportadas.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>O que acontece se eu digitar o número do celular errado?</span>
+                    <span data-i18n="faq.4.question">O que acontece se eu digitar o número do celular errado?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Sugerimos atenção redobrada no momento da digitação. Se o número informado for válido e receber a recarga, não temos como reverter o processo. Caso o número seja inválido ou o envio falhe, nossa plataforma cancelará a transação automaticamente para garantir que você não seja prejudicado.</p>
+                    <p data-i18n="faq.4.answer">Sugerimos atenção redobrada no momento da digitação. Se o número informado for válido e receber a recarga, não temos como reverter o processo. Caso o número seja inválido ou o envio falhe, nossa plataforma cancelará a transação automaticamente para garantir que você não seja prejudicado.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Como entro em contato com o suporte da Intop?</span>
+                    <span data-i18n="faq.5.question">Como entro em contato com o suporte da Intop?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Você pode acessar a seção de suporte no menu do próprio aplicativo ou enviar um e-mail com as informações de sua transação diretamente para o endereço suporte@intop.com.br.</p>
+                    <p data-i18n="faq.5.answer">Você pode acessar a seção de suporte no menu do próprio aplicativo ou enviar um e-mail com as informações de sua transação diretamente para o endereço suporte@intop.com.br.</p>
                 </div>
             </div>
            
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Como funciona o pagamento da recarga?</span>
+                    <span data-i18n="faq.6.question">Como funciona o pagamento da recarga?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Após escolher o país, a operadora, o número de celular e o valor da recarga, o aplicativo gera as informações para pagamento via Pix.</p>
+                    <p data-i18n="faq.6.answer">Após escolher o país, a operadora, o número de celular e o valor da recarga, o aplicativo gera as informações para pagamento via Pix.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Preciso criar uma conta para fazer uma recarga?</span>
+                    <span data-i18n="faq.7.question">Preciso criar uma conta para fazer uma recarga?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Sim. É necessário criar uma conta na Intop para realizar recargas, acompanhar suas transações e consultar o histórico de recargas realizadas.</p>
+                    <p data-i18n="faq.7.answer">Sim. É necessário criar uma conta na Intop para realizar recargas, acompanhar suas transações e consultar o histórico de recargas realizadas.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Como posso acompanhar o status da minha recarga?</span>
+                    <span data-i18n="faq.8.question">Como posso acompanhar o status da minha recarga?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Você pode acompanhar o status da sua recarga diretamente na seção de histórico do aplicativo. Após a confirmação, a transação será atualizada e você poderá consultar os detalhes da operação.</p>
+                    <p data-i18n="faq.8.answer">Você pode acompanhar o status da sua recarga diretamente na seção de histórico do aplicativo. Após a confirmação, a transação será atualizada e você poderá consultar os detalhes da operação.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Receberei um comprovante da recarga?</span>
+                    <span data-i18n="faq.9.question">Receberei um comprovante da recarga?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Sim. Após a conclusão da recarga, você poderá consultar o comprovante diretamente no aplicativo e compartilhar as informações da transação pelo WhatsApp.</p>
+                    <p data-i18n="faq.9.answer">Sim. Após a conclusão da recarga, você poderá consultar o comprovante diretamente no aplicativo e compartilhar as informações da transação pelo WhatsApp.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>O que acontece se o pagamento não for confirmado?</span>
+                    <span data-i18n="faq.10.question">O que acontece se o pagamento não for confirmado?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Se o pagamento não for identificado ou confirmado, a recarga não será processada e o valor será automaticamente devolvido à sua conta, sem a necessidade de entrar em contato com o suporte. Caso o pagamento já tenha sido realizado, aguarde a confirmação do sistema.
-</p>
+                    <p data-i18n="faq.10.answer">Se o pagamento não for identificado ou confirmado, a recarga não será processada e o valor será automaticamente devolvido à sua conta, sem a necessidade de entrar em contato com o suporte. Caso o pagamento já tenha sido realizado, aguarde a confirmação do sistema.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Posso cancelar uma recarga depois de realizar o pagamento?</span>
+                    <span data-i18n="faq.11.question">Posso cancelar uma recarga depois de realizar o pagamento?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Depois que a recarga for processada e enviada para o número informado, não é possível cancelá-la ou revertê-la. Por isso, confira cuidadosamente o número do celular e o valor antes de confirmar a operação.</p>
-                </div>
-            </div>
-            
-
-            <div class="faq-item">
-                <div class="faq-header">
-                    <span>É seguro realizar pagamentos pela Intop?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-body">
-                    <p>Sim. A Intop utiliza processos de pagamento e sistemas de segurança para proteger as informações dos usuários e suas transações. Recomendamos sempre verificar os dados da recarga antes de realizar o pagamento.</p>
+                    <p data-i18n="faq.11.answer">Depois que a recarga for processada e enviada para o número informado, não é possível cancelá-la ou revertê-la. Por isso, confira cuidadosamente o número do celular e o valor antes de confirmar a operação.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Posso fazer uma nova recarga para o mesmo número?</span>
+                    <span data-i18n="faq.12.question">É seguro realizar pagamentos pela Intop?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Sim. Você pode realizar novas recargas para o mesmo número. Pelo histórico de transações, também é possível selecionar uma recarga anterior e facilitar o preenchimento dos dados para uma nova operação.</p>
+                    <p data-i18n="faq.12.answer">Sim. A Intop utiliza processos de pagamento e sistemas de segurança para proteger as informações dos usuários e suas transações. Recomendamos sempre verificar os dados da recarga antes de realizar o pagamento.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>A Intop cobra alguma taxa adicional?</span>
+                    <span data-i18n="faq.13.question">Posso fazer uma nova recarga para o mesmo número?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>O valor total da operação é apresentado antes da confirmação do pagamento. Dessa forma, você poderá verificar o valor da recarga e o valor final a pagar antes de realizar o Pix.</p>
+                    <p data-i18n="faq.13.answer">Sim. Você pode realizar novas recargas para o mesmo número. Pelo histórico de transações, também é possível selecionar uma recarga anterior e facilitar o preenchimento dos dados para uma nova operação.</p>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Posso fazer recargas para celulares de outros países?</span>
+                    <span data-i18n="faq.14.question">A Intop cobra alguma taxa adicional?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>Sim. A Intop permite realizar recargas internacionais para números de celular de diferentes países e operadoras disponíveis em nossa plataforma.</p>
+                    <p data-i18n="faq.14.answer">O valor total da operação é apresentado antes da confirmação do pagamento. Dessa forma, você poderá verificar o valor da recarga e o valor final a pagar antes de realizar o Pix.</p>
                 </div>
             </div>
+
             <div class="faq-item">
                 <div class="faq-header">
-                    <span>Como posso salvar o nome do beneficiário para não esquecer o número dele?
-                </span>
+                    <span data-i18n="faq.15.question">Posso fazer recargas para celulares de outros países?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                    <p>1. Acesse o Histórico e selecione o número do beneficiário.<br>
-                        2. Clique no ícone de lápis ao lado do nome da operadora.<br>
-                        3. Na janela que será aberta, digite o nome do beneficiário e clique em Salvar.
-                    </p>
+                    <p data-i18n="faq.15.answer">Sim. A Intop permite realizar recargas internacionais para números de celular de diferentes países e operadoras disponíveis em nossa plataforma.</p>
                 </div>
             </div>
-                    </div>
-                </section>
 
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span data-i18n="faq.16.question">Como posso salvar o nome do beneficiário para não esquecer o número dele?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-body">
+                    <p data-i18n="faq.16.answer">1. Acesse o Histórico e selecione o número do beneficiário.<br>2. Clique no ícone de lápis ao lado do nome da operadora.<br>3. Na janela que será aberta, digite o nome do beneficiário e clique em Salvar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App CTA -->
+    <section class="cta-section" id="baixar">
+        <h2 data-i18n="cta.title">Pronto para recarregar?</h2>
+        <p data-i18n="cta.subtitle">Instale o aplicativo oficial do Intop no seu Android e tenha acesso a recargas automáticas na palma da sua mão.</p>
+        <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="https://play.google.com/store/apps/details?id=br.com.intop.intop" class="btn-store" style="background: var(--gradient-brand);" target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor" style="width: 24px; height: 24px;">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6V10H8V14H12V18L16,14V10L12,6Z" />
+                </svg>
+                <div style="text-align: left;">
+                    <span style="font-size: 0.75rem; display: block; font-weight: 400; opacity: 0.8;" data-i18n="cta.download_direct">Download Direto</span>
+                    Google Play
+                </div>
+            </a>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -225,35 +518,36 @@
                 <h3>
                     <img src="logo-text.png" alt="Intop" class="logo-img" style="height: 32px; filter: brightness(0) invert(1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><span class="logo-fallback" style="display:none;">Intop<span style="color:var(--accent-green);">.</span></span>
                 </h3>
-                <p>A forma mais rápida, segura e econômica de enviar recargas de celular para seus amigos e familiares no exterior. Pagamento instantâneo via Pix.</p>
+                <p data-i18n="footer.about">A forma mais rápida, segura e econômica de enviar recargas de celular para seus amigos e familiares no exterior. Pagamento instantâneo via Pix.</p>
             </div>
             <div class="footer-links">
-                <h4>Navegação</h4>
+                <h4 data-i18n="footer.navigation">Navegação</h4>
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="como-funciona.html">Como Funciona</a></li>
-                    <!--li><a href="simulador.html">Simulador de Recargas</a></li-->
-                    <li><a href="vantagens.html">Nossas Vantagens</a></li>
-                    <li><a href="duvidas-frequentes.html">Dúvidas Frequentes</a></li>
+                    <li><a href="index.html" data-i18n="nav.home">Início</a></li>
+                    <li><a href="como-funciona.html" data-i18n="nav.how">Como Funciona</a></li>
+                    <li><a href="vantagens.html" data-i18n="nav.benefits">Nossas Vantagens</a></li>
+                    <li><a href="duvidas-frequentes.html" data-i18n="nav.faq">Dúvidas Frequentes</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>Suporte e Termos</h4>
+                <h4 data-i18n="footer.support">Suporte e Termos</h4>
                 <ul>
-                    <li><a href="https://admin.intop.com.br/privacy.html" target="_blank">Política de Privacidade</a></li>
-                    <li><a href="https://admin.intop.com.br/delete-account.html" target="_blank">Exclusão de Conta</a></li>
+                    <li><a href="https://admin.intop.com.br/privacy.html" target="_blank" data-i18n="footer.privacy">Política de Privacidade</a></li>
+                    <li><a href="https://admin.intop.com.br/delete-account.html" target="_blank" data-i18n="footer.delete">Exclusão de Conta</a></li>
                     <li><a href="mailto:suporte@intop.com.br">suporte@intop.com.br</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Intop. Todos os direitos reservados. Conectando pessoas através de recargas seguras e automatizadas em nuvem.</p>
+            <p data-i18n="footer.copyright">&copy; 2026 Intop. Todos os direitos reservados. Conectando pessoas através de recargas seguras e automatizadas em nuvem.</p>
             <div class="footer-bottom-links">
-                <a href="https://admin.intop.com.br/privacy.html" target="_blank">Privacidade</a>
-                <a href="https://admin.intop.com.br/delete-account.html" target="_blank">Termos</a>
+                <a href="https://admin.intop.com.br/privacy.html" target="_blank" data-i18n="footer.privacy">Privacidade</a>
+                <a href="https://admin.intop.com.br/delete-account.html" target="_blank" data-i18n="footer.terms">Termos</a>
             </div>
         </div>
     </footer>
     <script src="script.js"></script>
+    <!-- Custom Translation Script -->
+    <script src="duvidas-frequentes_traduction.js"></script>
 </body>
 </html>

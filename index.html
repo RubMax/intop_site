@@ -9,113 +9,297 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== LANGUAGE SWITCHER - TOUJOURS VISIBLE ===== */
+        .lang-switcher {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 0.5rem;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            min-width: 38px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #00c853, #00e676);
+            border-color: #00c853;
+            color: #0a0a1a;
+            box-shadow: 0 0 20px rgba(0, 200, 80, 0.4), inset 0 0 12px rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            font-weight: 800;
+        }
+
+        .lang-btn.active:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 28px rgba(0, 200, 80, 0.5);
+        }
+
+        /* ===== NAVIGATION STRUCTURE ===== */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 2rem;
+            background: rgba(10, 10, 26, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 100;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            flex-shrink: 0;
+            margin-right: 0.5rem;
+        }
+
+        /* Groupe: boutons langue + liens nav */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #00e676;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0 0.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        /* Mobile Nav Drawer */
+        .mobile-nav {
+            display: none;
+            background: rgba(10, 10, 26, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .mobile-nav.open {
+            display: block;
+        }
+
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .mobile-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-links a:hover,
+        .mobile-links a.active {
+            color: #00e676;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.75rem 1rem;
+                flex-wrap: nowrap;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-right {
+                gap: 0.5rem;
+                flex: 0 1 auto;
+            }
+
+            /* Boutons langue toujours visibles sur mobile */
+            .lang-switcher {
+                margin-right: 0;
+                gap: 4px;
+            }
+
+            .lang-btn {
+                font-size: 0.55rem;
+                padding: 4px 8px;
+                min-width: 32px;
+                border-width: 1.5px;
+            }
+
+            .lang-btn.active {
+                transform: scale(1.02);
+            }
+
+            .mobile-nav.open {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lang-btn {
+                font-size: 0.5rem;
+                padding: 3px 6px;
+                min-width: 28px;
+                border-width: 1.5px;
+            }
+
+            .logo img {
+                height: 28px;
+            }
+
+            .nav-container {
+                padding: 0.5rem 0.75rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="nav-container">
-            
+            <!-- Logo -->
             <a href="index.html" class="logo">
-                <!-- Wordmark image template with text fallback -->
-                <img src="logotxt.png" alt="Intop" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><span class="logo-fallback" style="display:none;">Intop<span style="color:var(--accent-green);">.</span></span>
+                <img src="logotxt.png" alt="Intop" class="logo-img" style="height: 32px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><span class="logo-fallback" style="display:none;">Intop<span style="color:var(--accent-green);">.</span></span>
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class='active'>Início</a></li>
-                <li><a href="como-funciona.html">Como Funciona</a></li>
-                <!--li><a href="simulador.html">Simulador</a></li-->
-                <li><a href="vantagens.html">Vantagens</a></li>
-                <li><a href="duvidas-frequentes.html">Dúvidas Frequentes</a></li>
-                <!--li><a href="#baixar" class="btn-download">Baixar App</a></li-->
-            </ul>
-            <button class="hamburger" aria-label="Menu">&#9776;</button>
+
+            <!-- Groupe: Boutons langue + Liens nav -->
+            <div class="nav-right">
+                <!-- Language switcher - TOUJOURS VISIBLE -->
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="pt">🇧🇷 PT</button>
+                    <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
+                    <button class="lang-btn" data-lang="ht">🇭🇹 HT</button>
+                </div>
+
+                <!-- Navigation links (desktop) -->
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active" data-i18n="nav.home">Início</a></li>
+                    <li><a href="como-funciona.html" data-i18n="nav.how">Como Funciona</a></li>
+                    <li><a href="vantagens.html" data-i18n="nav.benefits">Vantagens</a></li>
+                    <li><a href="duvidas-frequentes.html" data-i18n="nav.faq">Dúvidas Frequentes</a></li>
+                </ul>
+
+                <!-- Hamburger (mobile) -->
+                <button class="hamburger" aria-label="Menu">&#9776;</button>
+            </div>
         </nav>
+
         <!-- Mobile Nav Drawer -->
         <div class="mobile-nav">
             <div class="mobile-links">
-                <a href="index.html" class='active'>Início</a>
-                <a href="como-funciona.html">Como Funciona</a>
-                <!--a href="simulador.html">Simulador</a-->
-                <a href="vantagens.html">Vantagens</a>
-                <a href="duvidas-frequentes.html">Dúvidas Frequentes</a>
-                <!--a href="#baixar" class="btn-download" style="margin-top: 1rem;">Baixar App</a-->
+                <a href="index.html" class="active" data-i18n="nav.home">Início</a>
+                <a href="como-funciona.html" data-i18n="nav.how">Como Funciona</a>
+                <a href="vantagens.html" data-i18n="nav.benefits">Vantagens</a>
+                <a href="duvidas-frequentes.html" data-i18n="nav.faq">Dúvidas Frequentes</a>
             </div>
         </div>
     </header>
 
-    
     <!-- Hero Section -->
     <section class="section-container hero">
         <div class="hero-text">
-           <h1>Envie recargas para celulares em mais de 150 países de forma <span>rápida e segura</span></h1>
-                <p>Com a Intop, você envia recargas para familiares e amigos em outros países de forma simples e prática. Escolha o país, informe o número, selecione o valor e pague via Pix.</p>
+            <h1 data-i18n="hero.title">Envie recargas para celulares em mais de 150 países de forma <span>rápida e segura</span></h1>
+            <p data-i18n="hero.subtitle">Com a Intop, você envia recargas para familiares e amigos em outros países de forma simples e prática. Escolha o país, informe o número, selecione o valor e pague via Pix.</p>
 
             <div class="hero-buttons">
-                <!-- Google Play Button 
-                <a href="https://play.google.com/store/apps/details?id=br.com.intop.intop" class="btn-store" target="_blank">
-                    <svg viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent-green);">
-                        <path d="M5,3L19,12L5,21V3Z" />
-                    </svg>
-                    <div>
-                        <span style="font-size: 0.75rem; display: block; font-weight: 400; opacity: 0.8;">Baixar no</span>
-                        Google Play
-                    </div>
-                </a>
-                 APK Download Button 
-                <a href="https://admin.intop.com.br/dist/intop-app-release.apk" class="btn-store" style="background: var(--gradient-brand);" target="_blank">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6V10H8V14H12V18L16,14V10L12,6Z" />
-                    </svg>
-                    <div>
-                        <span style="font-size: 0.75rem; display: block; font-weight: 400; opacity: 0.8;">Download Direto</span>
-                        Arquivo APK
-                    </div>
-                </a>-->
+                <!-- Google Play Button (commented) -->
             </div>
         </div>
         <div class="hero-image">
-            <!-- Glassy background and floating logo container -->
             <div class="hero-logo-container">
                 <img src="logo-icon.png" alt="Intop Logo" class="hero-logo-img" onerror="this.style.display='none';">
             </div>
             <div class="phone-mockup">
                 <div class="phone-screen">
                     <div class="phone-header">
-                <img src="logotxt.png" alt="Intop" class="logo-img-fone" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><span class="logo-fallback" style="display:none;">Intop<span style="color:var();">.</span></span>
-                </div>
-                    <div class="phone-content">
-                        <!--div class="mockup-card">
-                            <div class="mockup-title">DDD + NÚMERO</div>
-                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;">509 371625...</div>
-                        </div-->
-                        <div class="mockup-card">
-                            <div class="mockup-title">PAÍS E OPERADORA</div>
-                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;">Haiti
-                            </div>
-                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;"> Rep. Dominicana
-                            </div>
-                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;"> Chile
-                            </div>
-                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;"> Bolívia
-                            </div>
-                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;"> Venezuela
-                            </div>
-                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;"> Cuba
-                            </div>
-                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;"> Equador
-                            </div>
-                        </div>
-                        <!--div class="mockup-card">
-                            <div class="mockup-title">VALOR DE RECARGA</div>
-                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;">R$ 50,00</div>
-                        </div-->
-                        <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                        <a href="https://play.google.com/store/apps/details?id=br.com.intop.intop" class="btn-store" style="background: var(--gradient-brand);" target="_blank">
-                            
-                            <div style="text-align: left;">
-                                <span style="font-size: 0.75rem; display: block; font-weight: 400; opacity: 0.8;">Download no</span>
-                                Google Play
-                            </div>
-                        </a>
+                        <img src="logotxt.png" alt="Intop" class="logo-img-fone" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><span class="logo-fallback" style="display:none;">Intop<span style="color:var();">.</span></span>
                     </div>
+                    <div class="phone-content">
+                        <div class="mockup-card">
+                            <div class="mockup-title" data-i18n="hero.country_operator">PAÍS E OPERADORA</div>
+                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;">Haiti</div>
+                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;">Rep. Dominicana</div>
+                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;">Chile</div>
+                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;">Bolívia</div>
+                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;">Venezuela</div>
+                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;">Cuba</div>
+                            <div class="mockup-input" style="display: flex; align-items: center; padding-left: 10px; font-size: 0.85rem; color: #94a3b8;">Equador</div>
+                        </div>
+                        <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+                            <a href="https://play.google.com/store/apps/details?id=br.com.intop.intop" class="btn-store" style="background: var(--gradient-brand);" target="_blank">
+                                <div style="text-align: left;">
+                                    <span style="font-size: 0.75rem; display: block; font-weight: 400; opacity: 0.8;" data-i18n="hero.download_google">Download no</span>
+                                    Google Play
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -124,21 +308,20 @@
 
     <!-- App CTA -->
     <section class="cta-section" id="baixar">
-        <h2>Pronto para recarregar?</h2>
-        <p>Instale o aplicativo oficial do Intop no seu Android e tenha acesso a recargas automáticas na palma da sua mão.</p>
+        <h2 data-i18n="cta.title">Pronto para recarregar?</h2>
+        <p data-i18n="cta.subtitle">Instale o aplicativo oficial do Intop no seu Android e tenha acesso a recargas automáticas na palma da sua mão.</p>
         <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
             <a href="https://play.google.com/store/apps/details?id=br.com.intop.intop" class="btn-store" style="background: var(--gradient-brand);" target="_blank">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6V10H8V14H12V18L16,14V10L12,6Z" />
                 </svg>
                 <div style="text-align: left;">
-                    <span style="font-size: 0.75rem; display: block; font-weight: 400; opacity: 0.8;">Download Direto</span>
+                    <span style="font-size: 0.75rem; display: block; font-weight: 400; opacity: 0.8;" data-i18n="cta.download_direct">Download Direto</span>
                     Google Play
                 </div>
             </a>
         </div>
     </section>
-
 
     <!-- Footer -->
     <footer>
@@ -147,35 +330,36 @@
                 <h3>
                     <img src="logo-text.png" alt="Intop" class="logo-img" style="height: 32px; filter: brightness(0) invert(1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><span class="logo-fallback" style="display:none;">Intop<span style="color:var(--accent-green);">.</span></span>
                 </h3>
-                <p>A forma mais rápida, segura e econômica de enviar recargas de celular para seus amigos e familiares no exterior. Pagamento instantâneo via Pix.</p>
+                <p data-i18n="footer.about">A forma mais rápida, segura e econômica de enviar recargas de celular para seus amigos e familiares no exterior. Pagamento instantâneo via Pix.</p>
             </div>
             <div class="footer-links">
-                <h4>Navegação</h4>
+                <h4 data-i18n="footer.navigation">Navegação</h4>
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="como-funciona.html">Como Funciona</a></li>
-                    <!--li><a href="simulador.html">Simulador de Recargas</a></li-->
-                    <li><a href="vantagens.html">Nossas Vantagens</a></li>
-                    <li><a href="duvidas-frequentes.html">Dúvidas Frequentes</a></li>
+                    <li><a href="index.html" data-i18n="nav.home">Início</a></li>
+                    <li><a href="como-funciona.html" data-i18n="nav.how">Como Funciona</a></li>
+                    <li><a href="vantagens.html" data-i18n="nav.benefits">Vantagens</a></li>
+                    <li><a href="duvidas-frequentes.html" data-i18n="nav.faq">Dúvidas Frequentes</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>Suporte e Termos</h4>
+                <h4 data-i18n="footer.support">Suporte e Termos</h4>
                 <ul>
-                    <li><a href="https://admin.intop.com.br/privacy.html" target="_blank">Política de Privacidade</a></li>
-                    <li><a href="https://admin.intop.com.br/delete-account.html" target="_blank">Exclusão de Conta</a></li>
+                    <li><a href="https://admin.intop.com.br/privacy.html" target="_blank" data-i18n="footer.privacy">Política de Privacidade</a></li>
+                    <li><a href="https://admin.intop.com.br/delete-account.html" target="_blank" data-i18n="footer.delete">Exclusão de Conta</a></li>
                     <li><a href="mailto:suporte@intop.com.br">suporte@intop.com.br</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Intop. Todos os direitos reservados. Conectando pessoas através de recargas seguras e automatizadas em nuvem.</p>
+            <p data-i18n="footer.copyright">&copy; 2026 Intop. Todos os direitos reservados. Conectando pessoas através de recargas seguras e automatizadas em nuvem.</p>
             <div class="footer-bottom-links">
-                <a href="https://admin.intop.com.br/privacy.html" target="_blank">Privacidade</a>
-                <a href="https://admin.intop.com.br/delete-account.html" target="_blank">Termos</a>
+                <a href="https://admin.intop.com.br/privacy.html" target="_blank" data-i18n="footer.privacy">Privacidade</a>
+                <a href="https://admin.intop.com.br/delete-account.html" target="_blank" data-i18n="footer.terms">Termos</a>
             </div>
         </div>
     </footer>
     <script src="script.js"></script>
+    <!-- Custom Translation Script -->
+    <script src="index_traduction.js"></script>
 </body>
 </html>
