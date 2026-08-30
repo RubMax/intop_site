@@ -726,17 +726,17 @@ footer {
 }
 
 .footer-container {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 4rem;
+    gap: 1rem;
 }
 
 .footer-about h3 {
-    font-size: 1.75rem;
+    font-size: 1.40rem;
     font-weight: 800;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     background: var(--gradient-brand);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -842,7 +842,7 @@ footer {
     
     .footer-container {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 1rem;
     }
 }
 
@@ -1602,17 +1602,17 @@ footer {
 }
 
 .footer-container {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 4rem;
+    gap: 1rem;
 }
 
 .footer-about h3 {
-    font-size: 1.75rem;
+    font-size: 1.40rem;
     font-weight: 800;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     background: var(--gradient-brand);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1628,14 +1628,14 @@ footer {
 .footer-links h4 {
     font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: var(--accent-cyan);
 }
 
 .footer-links ul {
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    gap: 0.2rem;
 }
 
 .footer-links a {
@@ -1667,7 +1667,7 @@ footer {
 
 .footer-bottom-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .footer-bottom-links a {
@@ -1883,7 +1883,7 @@ footer {
             .lang-btn {
                 font-size: 2rem;
                 padding: 4px 8px;
-                min-width: 32px;
+                min-width: 38px;
                 border-width: 1.5px;
             }
 
