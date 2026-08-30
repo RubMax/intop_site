@@ -12,7 +12,7 @@
             "nav.home": "Início",
             "nav.how": "Como Funciona",
             "nav.benefits": "Vantagens",
-            "nav.faq": "Dúvidas Frequentes",
+            "nav.faq": "FAQ",
             "nav.download": "Baixar App",
 
             // Banner
@@ -48,7 +48,7 @@
             "nav.home": "Inicio",
             "nav.how": "Cómo Funciona",
             "nav.benefits": "Ventajas",
-            "nav.faq": "Preguntas Frecuentes",
+            "nav.faq": "FAQ",
             "nav.download": "Descargar App",
 
             // Banner
@@ -85,16 +85,16 @@
             "nav.home": "Akèy",
             "nav.how": "Kijan li Fonksyone",
             "nav.benefits": "Avantaj",
-            "nav.faq": "Kesyon yo poze souvan",
+            "nav.faq": "FAQ",
             "nav.download": "Telechaje App",
 
             // Banner
             "banner.title": "Kijan li <span>Fonksyone</span>",
-            "banner.subtitle": "Konprann etap pa etap senp ak pratik pou fè rechaj vit nan aplikasyon nou an.",
+            "banner.subtitle": "Konprann etap pa etap koman pou fè rechaj rapid nan aplikasyon nou an.",
 
             // Steps
             "steps.title": "Pwosesis Voye an 4 Etap",
-            "step.1.title": "Enskri ou nan aplikasyon an",
+            "step.1.title": "Enskri ou sou aplikasyon an",
             "step.1.desc": "1. Telechaje epi enstale aplikasyon an nan Google Play Store.\n2. Louvri aplikasyon an epi klike sou \"Pa gen kont? Enskri ou\".\n3. Ranpli enfòmasyon ou yo epi klike sou bouton \"Enskri\" pou kreye kont ou.",
             "step.2.title": "Fè yon rechaj",
             "step.2.desc": "1. Klike sou bouton \"Kòmanse Rechaj\".\n2. Chwazi peyi destinasyon an.\n3. Chwazi operatè telefoni an.\n4. Antre kòd zòn nan ak nimewo telefòn nan.\n5. Antre montan rechaj la.\n6. Tcheke valè a ki pral resevwa pa moun ki resevwa a.",

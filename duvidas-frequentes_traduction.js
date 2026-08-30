@@ -12,7 +12,7 @@
             "nav.home": "Início",
             "nav.how": "Como Funciona",
             "nav.benefits": "Vantagens",
-            "nav.faq": "Dúvidas Frequentes",
+            "nav.faq": "FAQ",
 
             // Banner
             "banner.title": "Dúvidas <span>Frequentes</span>",
@@ -70,7 +70,7 @@
             "nav.home": "Inicio",
             "nav.how": "Cómo Funciona",
             "nav.benefits": "Ventajas",
-            "nav.faq": "Preguntas Frecuentes",
+            "nav.faq": "FAQ",
             "nav.download": "Descargar App",
 
             // Banner
@@ -130,7 +130,7 @@
             "nav.home": "Akèy",
             "nav.how": "Kijan li Fonksyone",
             "nav.benefits": "Avantaj",
-            "nav.faq": "Kesyon yo poze souvan",
+            "nav.faq": "FAQ",
             "nav.download": "Telechaje App",
 
             // Banner

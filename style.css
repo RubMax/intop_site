@@ -68,7 +68,7 @@ header {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.8rem 2rem;
+    padding: 0.6rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -84,11 +84,7 @@ header {
     text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
 }
 
-.logo-img {
-    height: 70px;
-    width: auto;
-    object-fit: contain;
-}
+
 
 .logo-img-fone {
     height: 70px;
@@ -193,7 +189,7 @@ header {
 }
 
 .page-banner p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--gray-light);
     max-width: 700px;
     margin: 0 auto;
@@ -203,7 +199,7 @@ header {
 .section-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 2rem;
+    padding: 0.5rem 0.5rem;
 }
 
 /* Hero Section */
@@ -576,11 +572,11 @@ header {
 
 .advantage-card {
     background: var(--white);
-    padding: 2.5rem;
+    padding: 1rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     border: 1px solid rgba(0, 85, 255, 0.02);
     transition: var(--transition);
 }
@@ -606,9 +602,9 @@ header {
 }
 
 .advantage-info h3 {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.10rem;
     color: var(--dark);
-    font-weight: 700;
+    font-weight: 500;
     font-size: 1.2rem;
 }
 
@@ -691,7 +687,7 @@ header {
     background: var(--gradient-dark);
     color: var(--white);
     text-align: center;
-    padding: 1rem 2rem;
+    padding: 0.6rem 0.6rem;
     position: relative;
     overflow: hidden;
 }
@@ -710,7 +706,7 @@ header {
 .cta-section h2 {
     font-size: 2.5rem;
     font-weight: 800;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.6rem;
     letter-spacing: -1px;
 }
 
@@ -718,7 +714,7 @@ header {
     font-size: 1.15rem;
     color: var(--gray-light);
     max-width: 600px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 1rem;
 }
 
 /* Footer Section */
@@ -937,7 +933,7 @@ header {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.8rem 2rem;
+    padding: 0.6rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -949,12 +945,12 @@ header {
     color: var(--primary-blue);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.1rem;
     text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
 }
 
 .logo-img {
-    height: 38px;
+    height: 65px;
     width: auto;
     object-fit: contain;
 }
@@ -1052,7 +1048,7 @@ header {
     background: var(--gradient-dark);
     color: var(--white);
     text-align: center;
-    padding: 1rem 1rem;
+    padding: 0.5rem 0.5rem;
     position: relative;
     overflow: hidden;
 }
@@ -1069,9 +1065,9 @@ header {
 }
 
 .page-banner h1 {
-    font-size: 2.75rem;
+    font-size: 2rem;
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
     letter-spacing: -1px;
 }
 
@@ -1092,7 +1088,7 @@ header {
 .section-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 5rem 2rem;
+    padding: 0.5rem 0.5rem;
 }
 
 /* Hero Section */
@@ -1479,22 +1475,10 @@ header {
     border-color: rgba(0, 85, 255, 0.08);
 }
 
-.advantage-icon-box {
-    background: var(--gradient-brand);
-    color: var(--white);
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.75rem;
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(0, 230, 118, 0.3);
-}
+
 
 .advantage-info h3 {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.10rem;
     color: var(--dark);
     font-weight: 700;
     font-size: 1.2rem;
@@ -1579,7 +1563,7 @@ header {
     background: var(--gradient-dark);
     color: var(--white);
     text-align: center;
-    padding: 6rem 2rem;
+    padding: 1rem 1rem;
     position: relative;
     overflow: hidden;
 }
@@ -1596,9 +1580,9 @@ header {
 }
 
 .cta-section h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
-    margin-bottom: 1.2rem;
+    margin-bottom: rem;
     letter-spacing: -1px;
 }
 
@@ -1606,7 +1590,7 @@ header {
     font-size: 1.15rem;
     color: var(--gray-light);
     max-width: 600px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 1rem;
 }
 
 /* Footer Section */
@@ -1809,7 +1793,7 @@ footer {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.75rem 2rem;
+            padding: 0.10rem 1rem;
             background: rgba(10, 10, 26, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -1873,7 +1857,7 @@ footer {
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .nav-container {
-                padding: 0.75rem 1rem;
+                padding: 0.10rem 1rem;
                 flex-wrap: nowrap;
             }
 
@@ -1897,7 +1881,7 @@ footer {
             }
 
             .lang-btn {
-                font-size: 1rem;
+                font-size: 2rem;
                 padding: 4px 8px;
                 min-width: 32px;
                 border-width: 1.5px;
@@ -1914,18 +1898,18 @@ footer {
 
         @media (max-width: 480px) {
             .lang-btn {
-                font-size: 0.5rem;
+                font-size: 0.6rem;
                 padding: 3px 6px;
                 min-width: 28px;
                 border-width: 1.5px;
             }
 
             .logo img {
-                height: 32px;
+                height: 50px;
             }
 
             .nav-container {
-                padding: 0.5rem 0.75rem;
+                padding: 0.1rem 0.75rem;
             }
         }
 

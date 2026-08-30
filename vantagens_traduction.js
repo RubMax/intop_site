@@ -12,7 +12,7 @@
             "nav.home": "Início",
             "nav.how": "Como Funciona",
             "nav.benefits": "Vantagens",
-            "nav.faq": "Dúvidas Frequentes",
+            "nav.faq": "FAQ",
             "nav.download": "Baixar App",
 
             // Banner
@@ -51,7 +51,7 @@
             "nav.home": "Inicio",
             "nav.how": "Cómo Funciona",
             "nav.benefits": "Ventajas",
-            "nav.faq": "Preguntas Frecuentes",
+            "nav.faq": "FAQ",
             "nav.download": "Descargar App",
 
             // Banner
@@ -91,20 +91,20 @@
             "nav.home": "Akèy",
             "nav.how": "Kijan li Fonksyone",
             "nav.benefits": "Avantaj",
-            "nav.faq": "Kesyon yo poze souvan",
+            "nav.faq": "FAQ",
             "nav.download": "Telechaje App",
 
             // Banner
-            "banner.title": "Poukisa chwazi <span>Intop</span>?",
-            "banner.subtitle": "Dekouvri diferans prensipal yo ki fè platfòm nou an pi bon chwa nan rechaj entènasyonal yo.",
+            "banner.title": "Poukisa <span>Intop</span>?",
+            "banner.subtitle": "Dekouvri diferans prensipal yo ki fè platfòm nou an se pi bon chwa nan rechaj entènasyonal yo.",
 
             // Advantages
-            "advantage.1.title": "Vitès Enstantane",
-            "advantage.1.desc": "Pa gen tann. Konfimasyon peman an atravè Pix aktive otomatikman voye rechaj la, ki delivre aletranje nan segond.",
+            "advantage.1.title": "Vitès",
+            "advantage.1.desc": "Pa gen tann. Apre konfimasyon Pix la, otomatikman rechaj la ale aletranje nan 2 segond.",
             "advantage.2.title": "Sekirite Total",
-            "advantage.2.desc": "Transaksyon ou yo totalman pwoteje. Nou travay an konfòmite ak pi gwo règleman sekirite peman ak Pix.",
+            "advantage.2.desc": "Transaksyon ou yo totalman pwoteje. Nou travay ak Mercado Pago yon nan pi gwo antrepriz peman ak Pix.",
             "advantage.3.title": "Pa gen Frè Kache",
-            "advantage.3.desc": "Transparans an premye. Ou wè valè egzak telefòn nan pral resevwa anvan ou konfime peman an atravè Pix.",
+            "advantage.3.desc": "Transparans an premye. Ou wè valè egzak telefòn benefisye a nan pral resevwa anvan ou konfime peman an atravè Pix.",
             "advantage.4.title": "Kouvèti Laj",
             "advantage.4.desc": "Nou voye kredi telefoni pou plizyè santèn operatè ki nan Amerik, Ewòp, Azi ak Afrik atravè rezo dijital nou an.",
             "advantage.5.title": "Istorik nan App",
