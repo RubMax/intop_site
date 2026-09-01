@@ -95,26 +95,41 @@
             
             <!-- País de Destino (Dinâmico) -->
             <div class="form-group">
-                <label for="country">
-                    <span data-i18n="lbl_country">País de Destino</span>
-                    <span id="country-loading" class="loading-inline" style="display: none;"></span>
-                </label>
-                <select id="country" class="form-control">
-                    <option value="" data-i18n="loading_countries">Carregando países...</option>
-                </select>
-            </div>
+    <label for="country" data-i18n="lbl_country">
+        País de Destino
+    </label>
+
+    <div class="select-wrapper">
+        <select id="country" disabled>
+            <option value="">
+                Carregando países...
+            </option>
+        </select>
+
+        <span id="country-loading" class="loading-indicator">
+            Carregando...
+        </span>
+    </div>
+</div>
 
             <!-- Operadora (Dinâmica) -->
             <div class="form-group">
-                <label for="operator">
-                    <span data-i18n="lbl_operator">Selecione a Operadora</span>
-                    <span id="operator-loading" class="loading-inline" style="display: none;"></span>
-                </label>
-                <select id="operator" class="form-control" disabled>
-                    <option value="" data-i18n="select_country_first">Selecione um país primeiro</option>
-                </select>
-            </div>
+    <label for="operator" data-i18n="lbl_operator">
+        Selecione a Operadora
+    </label>
 
+    <div class="select-wrapper">
+        <select id="operator" disabled>
+            <option value="">
+                Selecione um país primeiro
+            </option>
+        </select>
+
+        <span id="operator-loading" class="loading-indicator">
+            Carregando...
+        </span>
+    </div>
+</div>
             <!-- Valor da Recarga -->
             <div class="form-group">
                 <label data-i18n="lbl_amount">Valor a Enviar em Reais (BRL)</label>
@@ -188,6 +203,6 @@
         </div>
     </footer>
     <script src="script.js"></script>
-    <script src="script-simulador.js"></script>
+    <script src="script-simulator.js"></script>
 </body>
 </html>
