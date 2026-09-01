@@ -3,87 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intop - Simulador de Recargas</title>
+    <title data-i18n="title_simulador">Intop - Simulador de Recargas</title>
     <link rel="stylesheet" href="style.css">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS adicional para o simulador dinâmico */
+        .loading-inline {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(0, 85, 255, 0.2);
+            border-left-color: var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #app-download-container {
+            animation: fadeInUp 0.5s ease-out;
+            background: rgba(0, 230, 118, 0.05);
+            border: 1px dashed var(--accent-green);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="nav-container">
             <a href="index.html" class="logo">
-                <!-- Wordmark image template with text fallback -->
-                <img src="logotxt.png" alt="Intop" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><span class="logo-fallback" style="display:none;">Intop<span style="color:var(--accent-green);">.</span></span>
+                <img src="logo-text.png" alt="Intop" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><span class="logo-fallback" style="display:none;">Intop<span style="color:var(--accent-green);">.</span></span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="como-funciona.html">Como Funciona</a></li>
-                <li><a href="simulador.html" class='active'>Simulador</a></li>
-                <li><a href="vantagens.html">Vantagens</a></li>
-                <li><a href="duvidas-frequentes.html">Dúvidas Frequentes</a></li>
-                <li><a href="#baixar" class="btn-download">Baixar App</a></li>
+                <li><a href="index.html" data-i18n="nav_home">Início</a></li>
+                <li><a href="como-funciona.html" data-i18n="nav_how">Como Funciona</a></li>
+                <li><a href="simulador.html" class="active" data-i18n="nav_simulator">Simulador</a></li>
+                <li><a href="vantagens.html" data-i18n="nav_advantages">Vantagens</a></li>
+                <li><a href="duvidas-frequentes.html" data-i18n="nav_faq">Dúvidas Frequentes</a></li>
+                <li class="language-switcher">
+                    <select id="language-selector" class="lang-btn">
+                        <option value="pt">🇧🇷 PT</option>
+                        <option value="es">🇪🇸 ES</option>
+                        <option value="ht">🇭🇹 HT</option>
+                    </select>
+                </li>
+                <li><a href="#baixar" class="btn-download" data-i18n="nav_download">Baixar App</a></li>
             </ul>
             <button class="hamburger" aria-label="Menu">&#9776;</button>
         </nav>
         <!-- Mobile Nav Drawer -->
         <div class="mobile-nav">
             <div class="mobile-links">
-                <a href="index.html">Início</a>
-                <a href="como-funciona.html">Como Funciona</a>
-                <a href="simulador.html" class='active'>Simulador</a>
-                <a href="vantagens.html">Vantagens</a>
-                <a href="duvidas-frequentes.html">Dúvidas Frequentes</a>
-                <a href="#baixar" class="btn-download" style="margin-top: 1rem;">Baixar App</a>
+                <a href="index.html" data-i18n="nav_home">Início</a>
+                <a href="como-funciona.html" data-i18n="nav_how">Como Funciona</a>
+                <a href="simulador.html" class="active" data-i18n="nav_simulator">Simulador</a>
+                <a href="vantagens.html" data-i18n="nav_advantages">Vantagens</a>
+                <a href="duvidas-frequentes.html" data-i18n="nav_faq">Dúvidas Frequentes</a>
+                <div class="language-switcher-mobile">
+                    <select id="language-selector-mobile" class="lang-btn">
+                        <option value="pt">🇧🇷 Português</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="ht">🇭🇹 Kreyòl</option>
+                    </select>
+                </div>
+                <a href="#baixar" class="btn-download" style="margin-top: 1rem;" data-i18n="nav_download">Baixar App</a>
             </div>
         </div>
     </header>
 
-    
     <!-- Page Banner -->
     <section class="page-banner">
-        <h1>Simulador de <span>Recarga</span></h1>
-        <p>Calcule instantaneamente o valor estimado que o destinatário receberá no exterior.</p>
+        <h1 data-i18n="sim_banner_title">Simulador de <span>Recarga Global</span></h1>
+        <p data-i18n="sim_banner_subtitle">Calcule em tempo real as tarifas e valores exatos para qualquer país integrado ao sistema DingConnect.</p>
     </section>
 
     <!-- Simulator Section -->
     <section class="section-container">
         <div class="simulator-wrapper">
-            <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem; font-size: 1.75rem; font-weight: 800;">Simule sua Próxima Recarga</h2>
+            <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem; font-size: 1.75rem; font-weight: 800;" data-i18n="sim_card_title">Simule sua Próxima Recarga</h2>
             
+            <!-- País de Destino (Dinâmico) -->
             <div class="form-group">
-                <label for="country">País de Destino</label>
+                <label for="country">
+                    <span data-i18n="lbl_country">País de Destino</span>
+                    <span id="country-loading" class="loading-inline" style="display: none;"></span>
+                </label>
                 <select id="country" class="form-control">
-                    <option value="USA">Estados Unidos (USD)</option>
-                    <option value="PRT">Portugal (EUR)</option>
-                    <option value="BOL">Bolívia (BOB)</option>
-                    <option value="COL" selected>Colômbia (COP)</option>
-                    <option value="VEN">Venezuela (VES)</option>
+                    <option value="" data-i18n="loading_countries">Carregando países...</option>
                 </select>
             </div>
 
+            <!-- Operadora (Dinâmica) -->
             <div class="form-group">
-                <label>Valor em Reais (BRL)</label>
+                <label for="operator">
+                    <span data-i18n="lbl_operator">Selecione a Operadora</span>
+                    <span id="operator-loading" class="loading-inline" style="display: none;"></span>
+                </label>
+                <select id="operator" class="form-control" disabled>
+                    <option value="" data-i18n="select_country_first">Selecione um país primeiro</option>
+                </select>
+            </div>
+
+            <!-- Valor da Recarga -->
+            <div class="form-group">
+                <label data-i18n="lbl_amount">Valor a Enviar em Reais (BRL)</label>
                 <div class="range-container">
                     <input type="range" id="amount-slider" class="range-slider" min="10" max="100" value="50" step="5">
                     <span class="range-val" id="amount-val">R$ 50,00</span>
                 </div>
-                <small style="color: var(--gray); display: block; margin-top: 0.5rem;">Os limites por recarga são configurados entre R$ 10,00 e R$ 100,00.</small>
+                <small style="color: var(--gray); display: block; margin-top: 0.5rem;" data-i18n="sim_limits_info">Os limites por recarga são configurados entre R$ 10,00 e R$ 100,00.</small>
             </div>
 
+            <!-- Card de Resultado -->
             <div class="result-card">
-                <div class="result-label">O destinatário receberá aproximadamente:</div>
-                <div class="result-value" id="result-val">32.125</div>
-                <div class="result-currency" id="result-currency">COP</div>
+                <div class="result-label" data-i18n="sim_approx_receive">O destinatário receberá aproximadamente:</div>
+                <div class="result-value" id="result-val">---</div>
+                <div class="result-currency" id="result-currency">---</div>
             </div>
 
-            <p style="font-size: 0.85rem; color: var(--gray); text-align: center; line-height: 1.4;">
-                *Os valores exibidos são baseados em estimativas das taxas de câmbio internacionais vigentes e taxas operacionais básicas. O valor final entregue no celular pode sofrer variações conforme tributações locais do país de destino.
+            <!-- Bloco de Download do App -->
+            <div id="app-download-container" style="display: none; margin-top: 2rem; text-align: center;">
+                <p style="font-weight: 700; color: var(--dark); margin-bottom: 1rem;" data-i18n="sim_download_prompt">
+                    Gostou do valor real? Envie essa recarga agora mesmo pelo nosso aplicativo!
+                </p>
+                <a href="https://play.google.com/store/apps/details?id=br.com.intop.intop" target="_blank" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M3,5.27V18.73L16.55,12L3,5.27M17.87,11.33L19.5,12.15L17.87,13L16.55,12L17.87,11.33M3,3.15L17.2,10.25L13.85,12L3,3.15M3,20.85L13.85,12L17.2,13.75L3,20.85Z" />
+                    </svg>
+                    <span data-i18n="btn_install_app">Instalar App Intop</span>
+                </a>
+            </div>
+
+            <p style="font-size: 0.85rem; color: var(--gray); text-align: center; line-height: 1.4; margin-top: 2rem;" data-i18n="sim_disclaimer">
+                *Os valores exibidos são baseados em taxas de câmbio em tempo real consultadas diretamente através do sistema integrado DingConnect.
             </p>
         </div>
     </section>
-
 
     <!-- Footer -->
     <footer>
@@ -92,31 +158,32 @@
                 <h3>
                     <img src="logo-text.png" alt="Intop" class="logo-img" style="height: 32px; filter: brightness(0) invert(1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><span class="logo-fallback" style="display:none;">Intop<span style="color:var(--accent-green);">.</span></span>
                 </h3>
-                <p>A forma mais rápida, segura e econômica de enviar recargas de celular para seus amigos e familiares no exterior. Pagamento instantâneo via Pix.</p>
+                <p data-i18n="footer_desc">A forma mais rápida, segura e econômica de enviar recargas de celular para seus amigos e familiares no exterior. Pagamento instantâneo via Pix.</p>
             </div>
             <div class="footer-links">
-                <h4>Navegação</h4>
+                <h4 data-i18n="footer_nav_header">Navegação</h4>
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="como-funciona.html">Como Funciona</a></li>
-                    <li><a href="simulador.html">Simulador de Recargas</a></li>
-                    <li><a href="vantagens.html">Nossas Vantagens</a></li>
-                    <li><a href="duvidas-frequentes.html">Dúvidas Frequentes</a></li>
+                    <li><a href="index.html" data-i18n="nav_home">Início</a></li>
+                    <li><a href="como-funciona.html" data-i18n="nav_how">Como Funciona</a></li>
+                    <li><a href="simulador.html" data-i18n="nav_simulator">Simulador de Recargas</a></li>
+                    <li><a href="vantagens.html" data-i18n="nav_advantages">Nossas Vantagens</a></li>
+                    <li><a href="duvidas-frequentes.html" data-i18n="nav_faq">Dúvidas Frequentes</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>Suporte e Termos</h4>
+                <h4 data-i18n="footer_support_header">Suporte e Termos</h4>
                 <ul>
-                    <li><a href="https://admin.intop.com.br/privacy.html" target="_blank">Política de Privacidade</a></li>
+                    <li><a href="https://admin.intop.com.br/privacy.html" target="_blank" data-i18n="footer_privacy">Política de Privacidade</a></li>
+                    <li><a href="https://admin.intop.com.br/delete-account.html" target="_blank" data-i18n="footer_delete">Exclusão de Conta</a></li>
                     <li><a href="mailto:suporte@intop.com.br">suporte@intop.com.br</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Intop. Todos os direitos reservados. Conectando pessoas através de recargas seguras e automatizadas em nuvem.</p>
+            <p data-i18n="footer_copyright">&copy; 2026 Intop. Todos os direitos reservados. Conectando pessoas através de recargas seguras e automatizadas em nuvem.</p>
             <div class="footer-bottom-links">
-                <a href="https://admin.intop.com.br/privacy.html" target="_blank">Privacidade</a>
-                <a href="https://admin.intop.com.br/delete-account.html" target="_blank">Termos</a>
+                <a href="https://admin.intop.com.br/privacy.html" target="_blank" data-i18n="bottom_privacy">Privacidade</a>
+                <a href="https://admin.intop.com.br/delete-account.html" target="_blank" data-i18n="bottom_terms">Termos</a>
             </div>
         </div>
     </footer>
