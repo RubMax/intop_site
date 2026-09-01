@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     // 1. CONFIGURAÇÃO DA API LIVE
     // =========================================================================
-    const API_BASE_URL = 'https://api.intop.com.br'; // API do seu VPS
-    const LIVE_MODE = true; // Mude para true quando implantar as novas rotas no NestJS!
+    const API_BASE_URL = 'https://api.intop.com.br';
+    const LIVE_MODE = true;
 
     // =========================================================================
     // 2. MOBILE HAMBURGER MENU
@@ -31,12 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const item = header.parentElement;
             const isActive = item.classList.contains('active');
             
-            // Fecha todos
             document.querySelectorAll('.faq-item').forEach(i => {
                 i.classList.remove('active');
             });
             
-            // Abre o atual se não estava ativo
             if (!isActive) {
                 item.classList.add('active');
             }
@@ -56,8 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_advantages: "Vantagens",
             nav_faq: "Dúvidas Frequentes",
             nav_download: "Baixar App",
-            
-            // Vantagens
             banner_title: "Por que escolher a <span>Intop</span>?",
             banner_subtitle: "Descubra os principais diferenciais que tornam a nossa plataforma a melhor escolha em recargas internacionais.",
             adv1_title: "Velocidade Instantânea",
@@ -72,8 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
             adv5_desc: "Acompanhe todos os seus comprovantes de forma simples. O aplicativo possui um histórico completo de transações e beneficiários frequentes.",
             adv6_title: "Suporte Dedicado",
             adv6_desc: "Nossa equipe de suporte está sempre pronta para ajudar em caso de dúvidas sobre transações ou configurações.",
-            
-            // Simulador Dinâmico
             sim_banner_title: "Simulador de <span>Recarga Global</span>",
             sim_banner_subtitle: "Calcule em tempo real as tarifas e valores exatos para qualquer país integrado ao sistema DingConnect.",
             sim_card_title: "Simule sua Próxima Recarga",
@@ -85,15 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
             sim_download_prompt: "Gostou do valor real? Envie essa recarga agora mesmo pelo nosso aplicativo!",
             btn_install_app: "Instalar App Intop",
             sim_disclaimer: "*Os valores exibidos são baseados em taxas de câmbio em tempo real consultadas diretamente através do sistema integrado DingConnect.",
-            
-            // Dynamic States
             loading_countries: "Carregando todos os países do sistema...",
             loading_operators: "Carregando operadoras...",
             select_country_first: "Selecione um país primeiro",
             select_operator_placeholder: "-- Selecione a Operadora --",
             error_loading: "Erro ao sincronizar com o servidor",
-            
-            // Footer
             footer_desc: "A forma mais rápida, segura e econômica de enviar recargas de celular para seus amigos e familiares no exterior. Pagamento instantâneo via Pix.",
             footer_nav_header: "Navegação",
             footer_support_header: "Suporte e Termos",
@@ -112,8 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_advantages: "Ventajas",
             nav_faq: "Preguntas Frecuentes",
             nav_download: "Descargar App",
-            
-            // Ventajas
             banner_title: "¿Por qué elegir <span>Intop</span>?",
             banner_subtitle: "Descubra las principales ventajas que hacen de nuestra plataforma la mejor opción para recargas internacionales.",
             adv1_title: "Velocidad Instantánea",
@@ -128,8 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
             adv5_desc: "Siga todos sus recibos de forma sencilla. La aplicación cuenta con un historial completo de transacciones y beneficiarios frecuentes.",
             adv6_title: "Soporte Dedicado",
             adv6_desc: "Nuestro equipo de soporte está siempre listo para ayudar en caso de dudas sobre transacciones o configuraciones.",
-            
-            // Simulador
             sim_banner_title: "Simulador de <span>Recarga Global</span>",
             sim_banner_subtitle: "Calcule en tiempo real las tarifas y montos exactos para cualquier país integrado en el sistema DingConnect.",
             sim_card_title: "Simule su Próxima Recarga",
@@ -141,15 +127,11 @@ document.addEventListener('DOMContentLoaded', () => {
             sim_download_prompt: "¿Le gustó el valor real? ¡Envíe esta recarga ahora mismo a través de nuestra aplicación!",
             btn_install_app: "Instalar Aplicación Intop",
             sim_disclaimer: "*Los montos mostrados están basados en tasas de cambio en tiempo real consultadas directamente a través del sistema integrado DingConnect.",
-            
-            // Dynamic States
             loading_countries: "Cargando todos los países del sistema...",
             loading_operators: "Cargando operadores...",
             select_country_first: "Seleccione un país primero",
             select_operator_placeholder: "-- Seleccione el Operador --",
             error_loading: "Error al sincronizar con el servidor",
-
-            // Footer
             footer_desc: "La forma más rápida, segura y económica de enviar recargas de celular a sus amigos y familiares en el extranjero. Pago instantáneo a través de Pix.",
             footer_nav_header: "Navegación",
             footer_support_header: "Soporte y Términos",
@@ -168,8 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_advantages: "Avantaj",
             nav_faq: "Kesyon moun poze souvan",
             nav_download: "Telechaje App",
-            
-            // Avantaj
             banner_title: "Poukisa pou w chwazi <span>Intop</span>?",
             banner_subtitle: "Dekouvri gwo diferans ki fè platfòm nou an se pi bon chwa pou voye kredi entènasyonal.",
             adv1_title: "Chajman Enstantane",
@@ -184,8 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
             adv5_desc: "Swiv tout resi ou yo fasil. Aplikasyon an gen yon istorik konplè sou tranzaksyon ak moun ou voye kredi souvan yo.",
             adv6_title: "Sipò Devwe",
             adv6_desc: "Ekip sipò nou an toujou pare pou ede w si w gen kesyon sou tranzaksyon oswa konfigirasyon yo.",
-            
-            // Simulador
             sim_banner_title: "Similatè <span>Chajman Global</span>",
             sim_banner_subtitle: "Kalkile an tan reyèl tarif yo ak valè egzak pou nenpòt peyi ki entegre nan sistèm DingConnect la.",
             sim_card_title: "Simile Pwochen Chajman Ou",
@@ -197,15 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
             sim_download_prompt: "Ou renmen valè reyèl la? Voye chajman sa a kounye a fasil ak aplikasyon nou an!",
             btn_install_app: "Enstale App Intop la",
             sim_disclaimer: "*Valè ki afiche yo baze sou pousantaj echanj an tan reyèl ki soti dirèkteman nan sistèm entegre DingConnect la.",
-            
-            // Dynamic States
             loading_countries: "N ap chaje tout peyi nan sistèm nan...",
             loading_operators: "N ap chaje operatè yo...",
             select_country_first: "Chwazi yon peyi an premye",
             select_operator_placeholder: "-- Chwazi Operatè a --",
             error_loading: "Erè lè n ap konekte ak sèvè a",
-
-            // Footer
             footer_desc: "Fason ki pi rapid, pi an sekirite ak pi ekonomik pou voye chajman telefòn bay zanmi ak fanmi w lòt bò dlo. Peman enstantane ak Pix.",
             footer_nav_header: "Navigasyon",
             footer_support_header: "Sipò ak Kondisyon yo",
@@ -229,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Sincronizar dropdowns de idiomas
         const desktopSelector = document.getElementById('language-selector');
         const mobileSelector = document.getElementById('language-selector-mobile');
         if (desktopSelector) desktopSelector.value = lang;
@@ -238,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('preferredLanguage', lang);
     }
 
-    // Eventos de troca de idioma
     const selectDesktop = document.getElementById('language-selector');
     const selectMobile = document.getElementById('language-selector-mobile');
 
@@ -266,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const countryLoading = document.getElementById('country-loading');
     const operatorLoading = document.getElementById('operator-loading');
 
-    // Lista de fallback com taxas para garantir funcionamento instantâneo sem API
     const fallbackCountries = [
         { code: "HT", name: "Haiti", currency: "HTG", rate: 24.30, operators: ["Digicel", "Natcom"] },
         { code: "VE", name: "Venezuela", currency: "VES", rate: 5.85, operators: ["Digitel", "Movistar", "Movilnet"] },
@@ -280,121 +251,118 @@ document.addEventListener('DOMContentLoaded', () => {
         { code: "IT", name: "Itália", currency: "EUR", rate: 0.15, operators: ["TIM", "Vodafone", "WindTre"] }
     ];
 
-    // Carregar países dinamicamente
-   async function loadCountries() {
-    if (!countrySelect) return;
+    // ========================================================================
+    // CORRECTION 1: loadCountries() avec gestion multiple des structures de réponse
+    // ========================================================================
+    async function loadCountries() {
+        if (!countrySelect) return;
 
-    const lang = localStorage.getItem('preferredLanguage') || 'pt';
+        const lang = localStorage.getItem('preferredLanguage') || 'pt';
 
-    countrySelect.disabled = true;
-    countrySelect.innerHTML = `
-        <option value="">
-            ${translations[lang].loading_countries || 'Carregando países...'}
-        </option>
-    `;
+        countrySelect.disabled = true;
+        countrySelect.innerHTML = `
+            <option value="">
+                ${translations[lang].loading_countries || 'Carregando países...'}
+            </option>
+        `;
 
-    if (countryLoading) {
-        countryLoading.style.display = 'inline-block';
+        if (countryLoading) {
+            countryLoading.style.display = 'inline-block';
+        }
+
+        try {
+            console.log('Chargement des pays depuis :', API_BASE_URL);
+
+            const response = await fetch(
+                `${API_BASE_URL}/public-simulator/countries`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }
+            );
+
+            console.log('Status API countries:', response.status);
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+            }
+
+            const responseData = await response.json();
+            console.log('Réponse API brute:', responseData);
+
+            // 👇 Gestion de multiples structures de réponse
+            let countries = [];
+
+            if (responseData.data && Array.isArray(responseData.data)) {
+                countries = responseData.data;
+            } else if (Array.isArray(responseData)) {
+                countries = responseData;
+            } else if (responseData.countries && Array.isArray(responseData.countries)) {
+                countries = responseData.countries;
+            } else if (responseData.success && responseData.data && Array.isArray(responseData.data)) {
+                countries = responseData.data;
+            } else if (responseData.result && Array.isArray(responseData.result)) {
+                countries = responseData.result;
+            } else if (responseData.error || responseData.message) {
+                throw new Error(responseData.error || responseData.message || 'Erreur API inconnue');
+            }
+
+            if (!Array.isArray(countries) || countries.length === 0) {
+                throw new Error('Aucun pays trouvé ou format de réponse invalide');
+            }
+
+            console.log(`${countries.length} pays chargés avec succès`);
+            
+            countrySelect.innerHTML = '';
+
+            const placeholder = document.createElement('option');
+            placeholder.value = '';
+            placeholder.textContent = translations[lang].select_country_first || '-- Sélectionnez un pays --';
+            countrySelect.appendChild(placeholder);
+
+            countries
+                .sort((a, b) => (a.name || a.nom || a.label || '').localeCompare(b.name || b.nom || b.label || ''))
+                .forEach(country => {
+                    const option = document.createElement('option');
+                    option.value = country.code || country.isoCode || country.id || country.countryCode;
+                    option.textContent = country.name || country.nom || country.label || country.countryName || 'Pays inconnu';
+                    countrySelect.appendChild(option);
+                });
+
+            countrySelect.disabled = false;
+            console.log(`SUCESSO: ${countries.length} pays chargés de l'API`);
+
+        } catch (error) {
+            console.error('ERREUR DE CHARGEMENT DES PAYS:', error);
+
+            countrySelect.innerHTML = `
+                <option value="">
+                    ${translations[lang].error_loading || 'Erreur de chargement'}
+                </option>
+            `;
+            countrySelect.disabled = true;
+
+            // Utiliser les données de secours
+            loadFallbackCountries();
+
+        } finally {
+            if (countryLoading) {
+                countryLoading.style.display = 'none';
+            }
+        }
     }
 
-    try {
-        console.log('Chargement des pays depuis :', API_BASE_URL);
-
-        const response = await fetch(
-            `${API_BASE_URL}/public-simulator/countries`,
-            {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }
-        );
-
-        console.log('Status API countries:', response.status);
-
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-        }
-
-        const responseData = await response.json();
-        console.log('Réponse API brute:', responseData);
-
-        // 👇 CORRECTION : Gérer différentes structures de réponse
-        let countries = [];
-
-        // Si la réponse a une propriété 'data'
-        if (responseData.data && Array.isArray(responseData.data)) {
-            countries = responseData.data;
-        } 
-        // Si la réponse est directement un tableau
-        else if (Array.isArray(responseData)) {
-            countries = responseData;
-        }
-        // Si la réponse a une propriété 'countries'
-        else if (responseData.countries && Array.isArray(responseData.countries)) {
-            countries = responseData.countries;
-        }
-        // Si la réponse a une propriété 'success' et 'data'
-        else if (responseData.success && responseData.data && Array.isArray(responseData.data)) {
-            countries = responseData.data;
-        }
-        // Vérifier si la réponse contient une erreur
-        else if (responseData.error || responseData.message) {
-            throw new Error(responseData.error || responseData.message || 'Erreur API inconnue');
-        }
-
-        if (!Array.isArray(countries) || countries.length === 0) {
-            throw new Error('Aucun pays trouvé ou format de réponse invalide');
-        }
-
-        console.log(`${countries.length} pays chargés avec succès`);
+    function loadFallbackCountries() {
+        if (!countrySelect) return;
         
-        // Afficher les pays dans le select
+        const lang = localStorage.getItem('preferredLanguage') || 'pt';
         countrySelect.innerHTML = '';
-
+        
         const placeholder = document.createElement('option');
         placeholder.value = '';
         placeholder.textContent = translations[lang].select_country_first || '-- Sélectionnez un pays --';
-        countrySelect.appendChild(placeholder);
-
-        countries
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .forEach(country => {
-                const option = document.createElement('option');
-                option.value = country.code || country.isoCode || country.id;
-                option.textContent = country.name || country.nom || country.label;
-                countrySelect.appendChild(option);
-            });
-
-        countrySelect.disabled = false;
-        console.log(`SUCESSO: ${countries.length} pays chargés de l'API`);
-
-    } catch (error) {
-        console.error('ERREUR DE CHARGEMENT DES PAYS:', error);
-
-        // Afficher un message d'erreur
-        countrySelect.innerHTML = `
-            <option value="">
-                ${translations[lang].error_loading || 'Erreur de chargement'}
-            </option>
-        `;
-        countrySelect.disabled = true;
-
-        // Option: Utiliser les données de secours
-        // loadFallbackCountries();
-
-    } finally {
-        if (countryLoading) {
-            countryLoading.style.display = 'none';
-        }
-    }
-}
-
-    function loadFallbackCountries() {
-        countrySelect.innerHTML = '';
-        const placeholder = document.createElement('option');
-        placeholder.value = '';
-        placeholder.textContent = translations[localStorage.getItem('preferredLanguage') || 'pt'].select_country_first;
         countrySelect.appendChild(placeholder);
 
         fallbackCountries.forEach(c => {
@@ -403,48 +371,74 @@ document.addEventListener('DOMContentLoaded', () => {
             opt.textContent = `${c.name} (${c.currency})`;
             countrySelect.appendChild(opt);
         });
+        
+        countrySelect.disabled = false;
     }
 
-    // Carregar operadores ao selecionar o país
+    // ========================================================================
+    // CORRECTION 2: handleCountryChange() avec gestion d'erreurs améliorée
+    // ========================================================================
     async function handleCountryChange() {
+        if (!countrySelect || !operatorSelect) return;
+        
         const countryCode = countrySelect.value;
+        const lang = localStorage.getItem('preferredLanguage') || 'pt';
+        
         if (!countryCode) {
-            operatorSelect.innerHTML = `<option value="">${translations[localStorage.getItem('preferredLanguage') || 'pt'].select_country_first}</option>`;
+            operatorSelect.innerHTML = `<option value="">${translations[lang].select_country_first || 'Sélectionnez un pays d\'abord'}</option>`;
             operatorSelect.disabled = true;
+            updateSimulation();
             return;
         }
 
-        operatorSelect.disabled = false;
+        operatorSelect.disabled = true;
         if (operatorLoading) operatorLoading.style.display = 'inline-block';
 
         if (LIVE_MODE) {
             try {
                 const response = await fetch(`${API_BASE_URL}/public-simulator/operators?countryCode=${countryCode}`);
-                if (!response.ok) throw new Error('API Error');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
                 const responseData = await response.json();
-const responseData = await response.json();
+                console.log('Réponse opérateurs:', responseData);
 
-if (responseData.error) {
-    throw new Error(responseData.error);
-}
+                // Gestion des différentes structures de réponse
+                let operators = [];
+                
+                if (responseData.data && Array.isArray(responseData.data)) {
+                    operators = responseData.data;
+                } else if (Array.isArray(responseData)) {
+                    operators = responseData;
+                } else if (responseData.operators && Array.isArray(responseData.operators)) {
+                    operators = responseData.operators;
+                } else if (responseData.success && responseData.data && Array.isArray(responseData.data)) {
+                    operators = responseData.data;
+                } else if (responseData.error || responseData.message) {
+                    throw new Error(responseData.error || responseData.message || 'Erreur API');
+                }
 
-const operators = responseData.data;
+                if (!Array.isArray(operators) || operators.length === 0) {
+                    throw new Error('Aucun opérateur trouvé');
+                }
 
-if (!Array.isArray(operators)) {
-    throw new Error('Formato inválido de operadoras');
-}
-                operatorSelect.innerHTML = `<option value="">${translations[localStorage.getItem('preferredLanguage') || 'pt'].select_operator_placeholder}</option>`;
+                operatorSelect.innerHTML = `<option value="">${translations[lang].select_operator_placeholder || '-- Sélectionnez l\'opérateur --'}</option>`;
                 
                 operators.forEach(op => {
                     const opt = document.createElement('option');
-                    const opValue = typeof op === 'string' ? op : op.code;
-                    const opText = typeof op === 'string' ? op : op.name;
+                    const opValue = typeof op === 'string' ? op : (op.code || op.id || op.operatorCode);
+                    const opText = typeof op === 'string' ? op : (op.name || op.label || op.operatorName || opValue);
                     opt.value = opValue;
                     opt.textContent = opText;
                     operatorSelect.appendChild(opt);
                 });
+                
+                operatorSelect.disabled = false;
+
             } catch (err) {
-                console.warn("Erro ao obter operadoras da API, usando dados locais.");
+                console.warn("Erreur lors du chargement des opérateurs:", err);
                 loadFallbackOperators(countryCode);
             }
         } else {
@@ -456,28 +450,39 @@ if (!Array.isArray(operators)) {
     }
 
     function loadFallbackOperators(countryCode) {
-        const countryData = fallbackCountries.find(c => c.code === countryCode);
-        operatorSelect.innerHTML = `<option value="">${translations[localStorage.getItem('preferredLanguage') || 'pt'].select_operator_placeholder}</option>`;
+        if (!operatorSelect) return;
         
-        if (countryData) {
+        const lang = localStorage.getItem('preferredLanguage') || 'pt';
+        const countryData = fallbackCountries.find(c => c.code === countryCode);
+        
+        operatorSelect.innerHTML = `<option value="">${translations[lang].select_operator_placeholder || '-- Sélectionnez l\'opérateur --'}</option>`;
+        
+        if (countryData && countryData.operators) {
             countryData.operators.forEach(op => {
                 const opt = document.createElement('option');
-                opt.value = op.toLowerCase();
+                opt.value = op.toLowerCase().replace(/\s+/g, '_');
                 opt.textContent = op;
                 operatorSelect.appendChild(opt);
             });
+            operatorSelect.disabled = false;
+        } else {
+            operatorSelect.disabled = true;
         }
     }
 
-    // Atualizar cálculo da simulação em tempo real
+    // ========================================================================
+    // CORRECTION 3: updateSimulation() avec gestion améliorée
+    // ========================================================================
     async function updateSimulation() {
+        if (!countrySelect || !amountSlider || !amountVal || !resultVal || !resultCurrency) return;
+        
         const countryCode = countrySelect.value;
-        const operatorCode = operatorSelect.value;
-        const valBRL = parseInt(amountSlider.value);
+        const operatorCode = operatorSelect ? operatorSelect.value : '';
+        const valBRL = parseInt(amountSlider.value) || 0;
         
         amountVal.textContent = `R$ ${valBRL},00`;
 
-        if (!countryCode) {
+        if (!countryCode || valBRL === 0) {
             resultVal.textContent = '---';
             resultCurrency.textContent = '---';
             if (appDownloadContainer) appDownloadContainer.style.display = 'none';
@@ -486,28 +491,49 @@ if (!Array.isArray(operators)) {
 
         if (LIVE_MODE) {
             try {
-                const response = await fetch(`${API_BASE_URL}/public-simulator/estimate?countryCode=${countryCode}&amountBrl=${valBRL}&operatorCode=${operatorCode || ''}`);
-                if (!response.ok) throw new Error('Estimate API Error');
+                const url = `${API_BASE_URL}/public-simulator/estimate?countryCode=${countryCode}&amountBrl=${valBRL}${operatorCode ? `&operatorCode=${operatorCode}` : ''}`;
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
                 const data = await response.json();
+                console.log('Réponse estimation:', data);
 
-                if (data.success) {
+                // Gestion des différentes structures de réponse
+                let estimatedValue, currency;
+                
+                if (data.data) {
+                    estimatedValue = data.data.estimatedValue || data.data.amount || data.data.value;
+                    currency = data.data.currency || data.data.currencyCode;
+                } else if (data.success && data.data) {
+                    estimatedValue = data.data.estimatedValue || data.data.amount;
+                    currency = data.data.currency;
+                } else {
+                    estimatedValue = data.estimatedValue || data.amount || data.value;
+                    currency = data.currency || data.currencyCode;
+                }
+
+                if (estimatedValue !== undefined && estimatedValue !== null) {
                     let formattedAmount;
-                    if (data.currency === 'COP') {
-                        formattedAmount = Math.round(data.estimatedValue).toLocaleString('pt-BR');
+                    if (currency === 'COP') {
+                        formattedAmount = Math.round(estimatedValue).toLocaleString('pt-BR');
                     } else {
-                        formattedAmount = data.estimatedValue.toFixed(2).replace('.', ',');
+                        formattedAmount = Number(estimatedValue).toFixed(2).replace('.', ',');
                     }
 
                     resultVal.textContent = formattedAmount;
-                    resultCurrency.textContent = data.currency;
+                    resultCurrency.textContent = currency || '---';
 
-                    // Exibir bloco de download
                     if (appDownloadContainer) {
                         appDownloadContainer.style.display = 'block';
                     }
+                } else {
+                    throw new Error('Données d\'estimation invalides');
                 }
             } catch (err) {
-                console.warn("Erro na estimativa online. Usando estimativa local.");
+                console.warn("Erreur lors de l'estimation:", err);
                 calculateLocalSimulation(countryCode, valBRL);
             }
         } else {
@@ -535,11 +561,21 @@ if (!Array.isArray(operators)) {
         }
     }
 
-    // Eventos do Simulador
-    if (countrySelect) countrySelect.addEventListener('change', handleCountryChange);
-    if (operatorSelect) operatorSelect.addEventListener('change', updateSimulation);
-    if (amountSlider) amountSlider.addEventListener('input', updateSimulation);
+    // ========================================================================
+    // 6. INITIALISATION DES ÉVÉNEMENTS
+    // ========================================================================
+    if (countrySelect) {
+        countrySelect.addEventListener('change', handleCountryChange);
+    }
+    
+    if (operatorSelect) {
+        operatorSelect.addEventListener('change', updateSimulation);
+    }
+    
+    if (amountSlider) {
+        amountSlider.addEventListener('input', updateSimulation);
+    }
 
-    // Inicialização
+    // Démarrer le chargement
     loadCountries();
 });
