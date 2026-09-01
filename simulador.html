@@ -356,29 +356,27 @@
                  ===================================== -->
 
             <div class="form-group">
+    <label for="country-search" data-i18n="lbl_country">
+        País de Destino
+    </label>
 
-                <label for="country" data-i18n="lbl_country">
-                    País de Destino
-                </label>
+    <div class="country-search-container">
+        <input
+            type="text"
+            id="country-search"
+            placeholder="Digite o nome do país..."
+            autocomplete="off"
+        >
 
-                <div class="select-wrapper">
+        <input type="hidden" id="country" value="">
 
-                    <select id="country" disabled>
+        <div id="country-results" class="country-results"></div>
 
-                        <option value="">
-                            Carregando países...
-                        </option>
-
-                    </select>
-
-                    <span id="country-loading"
-                          class="loading-indicator">
-                        Carregando...
-                    </span>
-
-                </div>
-
-            </div>
+        <span id="country-loading" class="loading-indicator">
+            Carregando...
+        </span>
+    </div>
+</div>
 
 
             <!-- =====================================
