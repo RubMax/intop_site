@@ -132,20 +132,16 @@
 </div>
             <!-- Valor da Recarga -->
             <div class="form-group">
-                <label data-i18n="lbl_amount">Valor a Enviar em Reais (BRL)</label>
-                <div class="range-container">
-                    <input type="range" id="amount-slider" class="range-slider" min="10" max="100" value="50" step="5">
-                    <span class="range-val" id="amount-val">R$ 50,00</span>
-                </div>
-                <small style="color: var(--gray); display: block; margin-top: 0.5rem;" data-i18n="sim_limits_info">Os limites por recarga são configurados entre R$ 10,00 e R$ 100,00.</small>
-            </div>
+    <label for="country" data-i18n="lbl_country">Pays de Destination</label>
+    <div class="select-wrapper">
+        <select id="country" disabled>
+            <option value="">Chargement des pays...</option>
+        </select>
+        <span id="country-loading" class="loading-indicator">⏳</span>
+    </div>
+</div>
 
-            <!-- Card de Resultado -->
-            <div class="result-card">
-                <div class="result-label" data-i18n="sim_approx_receive">O destinatário receberá aproximadamente:</div>
-                <div class="result-value" id="result-val">---</div>
-                <div class="result-currency" id="result-currency">---</div>
-            </div>
+
 
             <!-- Bloco de Download do App -->
             <div id="app-download-container" style="display: none; margin-top: 2rem; text-align: center;">
