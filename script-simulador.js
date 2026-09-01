@@ -281,64 +281,107 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // Carregar países dinamicamente
-     async function loadCountries() {
+   async function loadCountries() {
     if (!countrySelect) return;
+
+    const lang = localStorage.getItem('preferredLanguage') || 'pt';
+
+    countrySelect.disabled = true;
+    countrySelect.innerHTML = `
+        <option value="">
+            ${translations[lang].loading_countries || 'Carregando países...'}
+        </option>
+    `;
 
     if (countryLoading) {
         countryLoading.style.display = 'inline-block';
     }
 
     try {
-        if (LIVE_MODE) {
-            const response = await fetch(
-                `${API_BASE_URL}/public-simulator/countries`
-            );
+        console.log('Chargement des pays depuis :', API_BASE_URL);
 
-            if (!response.ok) {
-                throw new Error(`Erro HTTP: ${response.status}`);
+        const response = await fetch(
+            `${API_BASE_URL}/public-simulator/countries`,
+            {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
             }
+        );
 
-            const responseData = await response.json();
+        console.log('Status API countries:', response.status);
 
-            // L'API retourne { data: [...], error: null }
-            const countries = responseData.data;
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+        }
 
-            if (!Array.isArray(countries) || countries.length === 0) {
-                throw new Error('Nenhum país recebido da API');
-            }
+        const responseData = await response.json();
+        console.log('Réponse API brute:', responseData);
 
-            countrySelect.innerHTML = '';
+        // 👇 CORRECTION : Gérer différentes structures de réponse
+        let countries = [];
 
-            const placeholder = document.createElement('option');
-            placeholder.value = '';
+        // Si la réponse a une propriété 'data'
+        if (responseData.data && Array.isArray(responseData.data)) {
+            countries = responseData.data;
+        } 
+        // Si la réponse est directement un tableau
+        else if (Array.isArray(responseData)) {
+            countries = responseData;
+        }
+        // Si la réponse a une propriété 'countries'
+        else if (responseData.countries && Array.isArray(responseData.countries)) {
+            countries = responseData.countries;
+        }
+        // Si la réponse a une propriété 'success' et 'data'
+        else if (responseData.success && responseData.data && Array.isArray(responseData.data)) {
+            countries = responseData.data;
+        }
+        // Vérifier si la réponse contient une erreur
+        else if (responseData.error || responseData.message) {
+            throw new Error(responseData.error || responseData.message || 'Erreur API inconnue');
+        }
 
-            placeholder.textContent =
-                translations[
-                    localStorage.getItem('preferredLanguage') || 'pt'
-                ].select_country_first;
+        if (!Array.isArray(countries) || countries.length === 0) {
+            throw new Error('Aucun pays trouvé ou format de réponse invalide');
+        }
 
-            countrySelect.appendChild(placeholder);
+        console.log(`${countries.length} pays chargés avec succès`);
+        
+        // Afficher les pays dans le select
+        countrySelect.innerHTML = '';
 
-            countries.forEach(c => {
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = translations[lang].select_country_first || '-- Sélectionnez un pays --';
+        countrySelect.appendChild(placeholder);
+
+        countries
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .forEach(country => {
                 const option = document.createElement('option');
-
-                option.value = c.code;
-                option.textContent = c.name;
-
+                option.value = country.code || country.isoCode || country.id;
+                option.textContent = country.name || country.nom || country.label;
                 countrySelect.appendChild(option);
             });
 
-            console.log(`${countries.length} países carregados com sucesso`);
+        countrySelect.disabled = false;
+        console.log(`SUCESSO: ${countries.length} pays chargés de l'API`);
 
-        } else {
-            loadFallbackCountries();
-        }
+    } catch (error) {
+        console.error('ERREUR DE CHARGEMENT DES PAYS:', error);
 
-    } catch (err) {
-        console.error('Erro ao carregar países:', err);
+        // Afficher un message d'erreur
+        countrySelect.innerHTML = `
+            <option value="">
+                ${translations[lang].error_loading || 'Erreur de chargement'}
+            </option>
+        `;
+        countrySelect.disabled = true;
 
-        // Si API échoue, utiliser la liste locale
-        loadFallbackCountries();
+        // Option: Utiliser les données de secours
+        // loadFallbackCountries();
 
     } finally {
         if (countryLoading) {
@@ -379,8 +422,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`${API_BASE_URL}/public-simulator/operators?countryCode=${countryCode}`);
                 if (!response.ok) throw new Error('API Error');
                 const responseData = await response.json();
+const responseData = await response.json();
+
+if (responseData.error) {
+    throw new Error(responseData.error);
+}
+
 const operators = responseData.data;
-                
+
+if (!Array.isArray(operators)) {
+    throw new Error('Formato inválido de operadoras');
+}
                 operatorSelect.innerHTML = `<option value="">${translations[localStorage.getItem('preferredLanguage') || 'pt'].select_operator_placeholder}</option>`;
                 
                 operators.forEach(op => {
