@@ -1106,3 +1106,74 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+function normalizeText(text) {
+    return (text || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+}
+
+function setupCountrySearch(countries) {
+    const searchInput = document.getElementById('country-search');
+    const countryInput = document.getElementById('country');
+    const resultsContainer = document.getElementById('country-results');
+
+    if (!searchInput || !countryInput || !resultsContainer) return;
+
+    function showCountries(search = '') {
+        const query = normalizeText(search);
+
+        const filteredCountries = countries.filter(country => {
+            const countryName = normalizeText(country.name);
+
+            // H → pays contenant H
+            // Hai → pays contenant Hai
+            return countryName.includes(query);
+        });
+
+        resultsContainer.innerHTML = '';
+
+        if (filteredCountries.length === 0) {
+            resultsContainer.innerHTML =
+                '<div class="country-no-results">Nenhum país encontrado</div>';
+            resultsContainer.style.display = 'block';
+            return;
+        }
+
+        filteredCountries.forEach(country => {
+            const item = document.createElement('div');
+
+            item.className = 'country-result-item';
+            item.textContent = country.name;
+
+            item.addEventListener('click', () => {
+                searchInput.value = country.name;
+                countryInput.value = country.code;
+
+                resultsContainer.style.display = 'none';
+
+                // Charge automatiquement les opérateurs
+                handleCountryChange();
+            });
+
+            resultsContainer.appendChild(item);
+        });
+
+        resultsContainer.style.display = 'block';
+    }
+
+    searchInput.addEventListener('input', () => {
+        countryInput.value = '';
+        showCountries(searchInput.value);
+    });
+
+    searchInput.addEventListener('focus', () => {
+        showCountries(searchInput.value);
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.country-search-container')) {
+            resultsContainer.style.display = 'none';
+        }
+    });
+}
