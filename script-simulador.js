@@ -281,94 +281,64 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // Carregar países dinamicamente
-    async function loadCountries() {
+     async function loadCountries() {
     if (!countrySelect) return;
-
-    const lang = localStorage.getItem('preferredLanguage') || 'pt';
-
-    countrySelect.disabled = true;
-    countrySelect.innerHTML = `
-        <option value="">
-            ${translations[lang].loading_countries}
-        </option>
-    `;
 
     if (countryLoading) {
         countryLoading.style.display = 'inline-block';
     }
 
     try {
-        console.log('Chargement des pays depuis :', API_BASE_URL);
+        if (LIVE_MODE) {
+            const response = await fetch(
+                `${API_BASE_URL}/public-simulator/countries`
+            );
 
-        const response = await fetch(
-            `${API_BASE_URL}/public-simulator/countries`,
-            {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
             }
-        );
 
-        console.log('Status API countries:', response.status);
+            const responseData = await response.json();
 
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-        }
+            // L'API retourne { data: [...], error: null }
+            const countries = responseData.data;
 
-        const responseData = await response.json();
+            if (!Array.isArray(countries) || countries.length === 0) {
+                throw new Error('Nenhum país recebido da API');
+            }
 
-        console.log('Réponse complète API:', responseData);
+            countrySelect.innerHTML = '';
 
-        if (responseData.error) {
-            throw new Error(responseData.error);
-        }
+            const placeholder = document.createElement('option');
+            placeholder.value = '';
 
-        const countries = responseData.data;
+            placeholder.textContent =
+                translations[
+                    localStorage.getItem('preferredLanguage') || 'pt'
+                ].select_country_first;
 
-        if (!Array.isArray(countries)) {
-            throw new Error('responseData.data não é uma lista');
-        }
+            countrySelect.appendChild(placeholder);
 
-        if (countries.length === 0) {
-            throw new Error('A API retornou uma lista vazia');
-        }
-
-        countrySelect.innerHTML = '';
-
-        const placeholder = document.createElement('option');
-        placeholder.value = '';
-        placeholder.textContent =
-            translations[lang].select_country_first;
-
-        countrySelect.appendChild(placeholder);
-
-        countries
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .forEach(country => {
+            countries.forEach(c => {
                 const option = document.createElement('option');
-                option.value = country.code;
-                option.textContent = country.name;
+
+                option.value = c.code;
+                option.textContent = c.name;
+
                 countrySelect.appendChild(option);
             });
 
-        countrySelect.disabled = false;
+            console.log(`${countries.length} países carregados com sucesso`);
 
-        console.log(
-            `SUCESSO: ${countries.length} países carregados da API`
-        );
+        } else {
+            loadFallbackCountries();
+        }
 
-    } catch (error) {
-        console.error('ERRO AO CARREGAR PAÍSES DA API:', error);
+    } catch (err) {
+        console.error('Erro ao carregar países:', err);
 
-        // NÃO carregar fallbackCountries
-        countrySelect.innerHTML = `
-            <option value="">
-                ${translations[lang].error_loading}
-            </option>
-        `;
-
-        countrySelect.disabled = true;
+        // Si API échoue, utiliser la liste locale
+        loadFallbackCountries();
 
     } finally {
         if (countryLoading) {
@@ -409,17 +379,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`${API_BASE_URL}/public-simulator/operators?countryCode=${countryCode}`);
                 if (!response.ok) throw new Error('API Error');
                 const responseData = await response.json();
-const responseData = await response.json();
-
-if (responseData.error) {
-    throw new Error(responseData.error);
-}
-
 const operators = responseData.data;
-
-if (!Array.isArray(operators)) {
-    throw new Error('Formato inválido de operadoras');
-}
+                
                 operatorSelect.innerHTML = `<option value="">${translations[localStorage.getItem('preferredLanguage') || 'pt'].select_operator_placeholder}</option>`;
                 
                 operators.forEach(op => {
