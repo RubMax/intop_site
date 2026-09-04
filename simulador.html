@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* CSS adicional para o simulador dinâmico v7 */
+        /* CSS adicional para o simulador dinâmico 100% API */
         .loading-inline {
             display: inline-block;
             width: 16px;
@@ -33,45 +33,12 @@
             padding: 1.5rem;
             border-radius: var(--border-radius);
         }
-        .phone-input-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--white);
-            border: 2px solid #e2e8f0;
-            border-radius: var(--border-radius);
-            padding: 0.25rem 0.5rem;
-            transition: border-color 0.3s ease;
-        }
-        .phone-input-wrapper:focus-within {
-            border-color: var(--primary-blue);
-        }
-        .phone-input-wrapper input {
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-            padding: 0.75rem 0.5rem !important;
-            font-size: 1.1rem;
-            width: 100%;
-        }
-        #btn-ok {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            border-radius: calc(var(--border-radius) - 2px);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        #btn-ok:disabled {
-            background-color: #cbd5e1;
-            color: #94a3b8;
-            cursor: not-allowed;
-        }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        .simulator-step {
+            transition: all 0.3s ease;
         }
     </style>
 </head>
@@ -129,33 +96,30 @@
         <div class="simulator-wrapper">
             <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem; font-size: 1.75rem; font-weight: 800;" data-i18n="sim_card_title">Simule sua Próxima Recarga</h2>
             
-            <!-- Etapa 1: Número de Telefone com Detecção de Prefixo -->
-            <div class="form-group">
-                <label for="phone-input">
-                    <span data-i18n="lbl_phone">Número de Telefone</span>
+            <!-- Etapa 1: País de Destino (Carregado via DingConnect GetCountries) -->
+            <div class="form-group simulator-step">
+                <label for="country">
+                    <span data-i18n="lbl_country">País de Destino</span>
                     <span id="country-loading" class="loading-inline" style="display: none;"></span>
                 </label>
-                <div class="phone-input-wrapper">
-                    <span id="country-flag" style="font-size: 1.8rem; user-select: none;">🌐</span>
-                    <input type="tel" id="phone-input" placeholder="+55 ..." autocomplete="off" required>
-                    <button id="btn-ok" type="button" disabled>OK</button>
-                </div>
-                <span id="detected-country-name" style="display: block; font-size: 0.9rem; color: var(--primary-blue); margin-top: 0.5rem; font-weight: 600; min-height: 20px;"></span>
+                <select id="country" class="form-control">
+                    <option value="" data-i18n="loading_countries">Carregando países parceiros...</option>
+                </select>
             </div>
 
-            <!-- Etapa 2: Escolha de Operadora e Opções (Aparece dinamicamente após clicar em OK) -->
-            <div id="operator-container" class="form-group" style="display: none;">
+            <!-- Etapa 2: Operadora (Carregada via DingConnect GetProviders) -->
+            <div id="operator-container" class="form-group simulator-step" style="display: none;">
                 <label for="operator">
                     <span data-i18n="lbl_operator">Selecione a Operadora</span>
                     <span id="operator-loading" class="loading-inline" style="display: none;"></span>
                 </label>
-                <select id="operator" class="form-control">
-                    <option value="" data-i18n="select_operator_placeholder">-- Selecione a Operadora --</option>
+                <select id="operator" class="form-control" disabled>
+                    <option value="" data-i18n="select_country_first">Selecione um país primeiro</option>
                 </select>
             </div>
 
-            <!-- Etapa 3: Valor da Recarga -->
-            <div id="amount-container" class="form-group" style="display: none;">
+            <!-- Etapa 3: Valor da Recarga (GetProducts/Fulfillment rates) -->
+            <div id="amount-container" class="form-group simulator-step" style="display: none;">
                 <label data-i18n="lbl_amount">Valor a Enviar em Reais (BRL)</label>
                 <div class="range-container">
                     <input type="range" id="amount-slider" class="range-slider" min="10" max="100" value="50" step="5">

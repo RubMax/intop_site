@@ -1,5 +1,5 @@
-// Main JavaScript for Intop Website (Multi-page with Prefix-based Simulator & Translation Support)
-// Version 8 - Advanced Phone Prefix auto-detection with Flag display and animated flow control.
+// Main JavaScript for Intop Website (Multi-page with Pure API-driven Simulator & Translation Support)
+// Version 10 - Standard API integration using DingConnect: GetCountries, GetProviders, GetProducts
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             banner_title: "Por que escolher a <span>Intop</span>?",
             banner_subtitle: "Descubra os principais diferenciais que tornam a nossa plataforma a melhor escolha em recargas internacionais.",
             adv1_title: "Velocidade Instantânea",
-            adv1_desc: "Sem esperas. A configuração de pagamento via Pix aciona automaticamente o envio da recarga, que é entregue no exterior em segundos.",
+            adv1_desc: "Sem esperas. A confirmação de pagamento via Pix aciona automaticamente o envio da recarga, que é entregue no exterior em segundos.",
             adv2_title: "Segurança Total",
             adv2_desc: "Suas transações são totalmente protegidas. Trabalhamos em conformidade com as maiores regulamentações de segurança de pagamentos e Pix.",
             adv3_title: "Sem Taxas Ocultas",
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sim_banner_title: "Simulador de <span>Recarga Global</span>",
             sim_banner_subtitle: "Calcule em tempo real as tarifas e valores exatos para qualquer país integrado ao sistema DingConnect.",
             sim_card_title: "Simule sua Próxima Recarga",
-            lbl_phone: "Número de Telefone",
+            lbl_country: "País de Destino",
             lbl_operator: "Selecione a Operadora",
             lbl_amount: "Valor a Enviar em Reais (BRL)",
             sim_limits_info: "Os limites por recarga são configurados entre R$ 10,00 e R$ 100,00.",
@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
             sim_disclaimer: "*Os valores exibidos são baseados em taxas de câmbio em tempo real consultadas diretamente através do sistema integrado DingConnect.",
             
             // Dynamic States
-            loading_countries: "Identificando operadoras do país...",
+            loading_countries: "Carregando países do sistema...",
             loading_operators: "Carregando operadoras...",
-            select_country_first: "Digite um número de telefone com código de área",
+            select_country_first: "-- Selecione o País de Destino --",
             select_operator_placeholder: "-- Selecione a Operadora --",
             error_loading: "Erro ao sincronizar com o servidor",
             
@@ -132,9 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Simulador
             sim_banner_title: "Simulador de <span>Recarga Global</span>",
-            sim_banner_subtitle: "Calcule en tiempo real las tarifas y montos exactos para cualquier país integrado en el sistema DingConnect.",
+            sim_banner_subtitle: "Calcule en tempo real las tarifas y montos exactos para cualquier país integrado en el sistema DingConnect.",
             sim_card_title: "Simule su Próxima Recarga",
-            lbl_phone: "Número de Teléfono",
+            lbl_country: "País de Destino",
             lbl_operator: "Seleccione el Operador",
             lbl_amount: "Monto a Enviar en Reales (BRL)",
             sim_limits_info: "Los límites de recarga están configurados entre R$ 10,00 y R$ 100,00.",
@@ -144,9 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
             sim_disclaimer: "*Los montos mostrados están basados en tasas de cambio en tempo real consultadas directamente a través del sistema integrado DingConnect.",
             
             // Dynamic States
-            loading_countries: "Identificando operadoras del país...",
+            loading_countries: "Cargando países del sistema...",
             loading_operators: "Cargando operadores...",
-            select_country_first: "Ingrese un número de teléfono con código de área",
+            select_country_first: "-- Selecione o País de Destino --",
             select_operator_placeholder: "-- Seleccione el Operador --",
             error_loading: "Error al sincronizar con el servidor",
 
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_privacy: "Política de Privacidad",
             footer_delete: "Eliminar Cuenta",
             footer_copyright: "&copy; 2026 Intop. Todos os direitos reservados. Conectando pessoas a través de recargas seguras e automatizadas na nuvem.",
-            bottom_privacy: "Privacidade",
+            bottom_privacy: "Privacidad",
             bottom_terms: "Términos"
         },
         ht: {
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sim_banner_title: "Similatè <span>Chajman Global</span>",
             sim_banner_subtitle: "Kalkile an tan reyèl tarif yo ak valè egzak pou nenpòt peyi ki entegre nan sistèm DingConnect la.",
             sim_card_title: "Simile Pwochen Chajman Ou",
-            lbl_phone: "Nimewo Telefòn",
+            lbl_country: "Peyi Destinatè a",
             lbl_operator: "Chwazi Operatè a",
             lbl_amount: "Valè Chajman an an Reais (BRL)",
             sim_limits_info: "Limit yo pou chak chajman se ant R$ 10,00 ak R$ 100,00.",
@@ -200,9 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
             sim_disclaimer: "*Valè ki afiche yo baze sou pousantaj echanj an tan reyèl ki soti dirèkteman nan sistèm entegre DingConnect la.",
             
             // Dynamic States
-            loading_countries: "N ap chèche operatè pou peyi sa...",
+            loading_countries: "N ap chaje tout peyi yo...",
             loading_operators: "N ap chaje operatè yo...",
-            select_country_first: "Antre yon nimewo telefòn ak tout kòd zòn",
+            select_country_first: "-- Chwazi Peyi Destinatè a --",
             select_operator_placeholder: "-- Chwazi Operatè a --",
             error_loading: "Erè lè n ap konekte ak sèvè a",
 
@@ -231,11 +231,11 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             localStorage.setItem(key, value);
         } catch (e) {
-            // Ignore error
+            // Ignore
         }
     }
 
-    // Safe translation helper that never throws a TypeError
+    // Safe translation helper
     function t(key) {
         const lang = safeStorageGet('preferredLanguage', 'pt');
         const activeLang = translations[lang] ? lang : 'pt';
@@ -277,13 +277,9 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLanguage(savedLang);
 
     // =========================================================================
-    // 5. SIMULADOR DINÂMICO DE RECARGAS COM DINGCONNECT
+    // 5. SIMULADOR DINÂMICO DE RECARGAS VIA DINGCONNECT API
     // =========================================================================
-    const phoneInput = document.getElementById('phone-input');
-    const countryFlag = document.getElementById('country-flag') || document.getElementById('phone-flag');
-    const btnOk = document.getElementById('btn-ok') || document.getElementById('btn-validate-phone');
-    const detectedCountryName = document.getElementById('detected-country-name');
-
+    const countrySelect = document.getElementById('country');
     const operatorContainer = document.getElementById('operator-container');
     const operatorSelect = document.getElementById('operator');
     const amountContainer = document.getElementById('amount-container');
@@ -298,148 +294,106 @@ document.addEventListener('DOMContentLoaded', () => {
     const operatorLoading = document.getElementById('operator-loading');
 
     // Se não estivermos na página do simulador, encerra a execução com segurança
-    if (!phoneInput) {
+    if (!countrySelect) {
         return;
     }
 
-    // Banco de Prefixo de países suportados com bandeiras e dados de fallback
-    const countryPrefixes = [
-        { prefix: '+55', code: 'BR', name: 'Brasil', currency: 'BRL', rate: 1.0, flag: '🇧🇷', operators: ["Vivo", "Tim", "Claro", "Oi"] },
-        { prefix: '+509', code: 'HT', name: 'Haiti', currency: 'HTG', rate: 24.30, flag: '🇭🇹', operators: ["Digicel", "Natcom"] },
-        { prefix: '+58', code: 'VE', name: 'Venezuela', currency: 'VES', rate: 5.85, flag: '🇻🇪', operators: ["Digitel", "Movistar", "Movilnet"] },
-        { prefix: '+57', code: 'CO', name: 'Colômbia', currency: 'COP', rate: 642.50, flag: '🇨🇴', operators: ["Claro", "Movistar", "Tigo", "Wom"] },
-        { prefix: '+1', code: 'US', name: 'Estados Unidos', currency: 'USD', rate: 0.16, flag: '🇺🇸', operators: ["AT&T", "T-Mobile", "Verizon"] },
-        { prefix: '+591', code: 'BO', name: 'Bolívia', currency: 'BOB', rate: 1.12, flag: '🇧🇴', operators: ["Entel", "Tigo", "Viva"] },
-        { prefix: '+351', code: 'PT', name: 'Portugal', currency: 'EUR', rate: 0.15, flag: '🇵🇹', operators: ["MEO", "NOS", "Vodafone"] },
-        { prefix: '+54', code: 'AR', name: 'Argentina', currency: 'ARS', rate: 154.20, flag: '🇦🇷', operators: ["Claro", "Personal", "Movistar"] },
-        { prefix: '+56', code: 'CL', name: 'Chile', currency: 'CLP', rate: 148.50, flag: '🇨🇱', operators: ["Entel", "Movistar", "Claro", "WOM"] },
-        { prefix: '+33', code: 'FR', name: 'França', currency: 'EUR', rate: 0.15, flag: '🇫🇷', operators: ["Orange", "SFR", "Bouygues", "Free"] },
-        { prefix: '+39', code: 'IT', name: 'Itália', currency: 'EUR', rate: 0.15, flag: '🇮🇹', operators: ["TIM", "Vodafone", "WindTre"] },
-        { prefix: '+593', code: 'EC', name: 'Equador', currency: 'ECS', rate: 0.16, flag: '🇪🇨', operators: ["Claro", "Movistar", "CNT"] },
-        { prefix: '+51', code: 'PE', name: 'Peru', currency: 'PEN', rate: 0.60, flag: '🇵🇪', operators: ["Claro", "Movistar", "Entel", "Bitel"] },
-        { prefix: '+52', code: 'MX', name: 'México', currency: 'MXN', rate: 3.12, flag: '🇲🇽', operators: ["Telcel", "Movistar", "AT&T"] }
+    // Lista de fallback local baseada no sistema DingConnect
+    const fallbackCountries = [
+        { code: "HT", name: "Haiti", currency: "HTG", rate: 24.30, operators: [ {code: "DIGICEL_HT", name: "Digicel"}, {code: "NATCOM_HT", name: "Natcom"} ] },
+        { code: "VE", name: "Venezuela", currency: "VES", rate: 5.85, operators: [ {code: "DIGITEL_VE", name: "Digitel"}, {code: "MOVISTAR_VE", name: "Movistar"}, {code: "MOVILNET_VE", name: "Movilnet"} ] },
+        { code: "CO", name: "Colômbia", currency: "COP", rate: 642.50, operators: [ {code: "CLARO_CO", name: "Claro"}, {code: "MOVISTAR_CO", name: "Movistar"}, {code: "TIGO_CO", name: "Tigo"} ] },
+        { code: "US", name: "Estados Unidos", currency: "USD", rate: 0.16, operators: [ {code: "ATT_US", name: "AT&T"}, {code: "TMOBILE_US", name: "T-Mobile"} ] },
+        { code: "BO", name: "Bolívia", currency: "BOB", rate: 1.12, operators: [ {code: "ENTEL_BO", name: "Entel"}, {code: "TIGO_BO", name: "Tigo"} ] }
     ];
 
-    let detectedCountry = null;
-
-    // Formatar e limpar entrada do telefone
-    function normalizePhone(val) {
-        let clean = val.replace(/[^0-9+]/g, ''); // Remove tudo exceto números e +
-        if (clean.startsWith('00')) {
-            clean = '+' + clean.substring(2);
-        }
-        if (clean.length > 0 && !clean.startsWith('+')) {
-            clean = '+' + clean;
-        }
-        return clean;
-    }
-
-    // Detectar país com base no prefixo digitado
-    function detectCountryFromValue(val) {
-        const normalized = normalizePhone(val);
-        if (normalized.length < 2) return null;
-
-        // Ordenar os prefixos por tamanho descendente para combinar primeiro o maior (+509 antes de +50)
-        const sortedPrefixes = [...countryPrefixes].sort((a, b) => b.prefix.length - a.prefix.length);
-
-        for (const item of sortedPrefixes) {
-            if (normalized.startsWith(item.prefix)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    // Escuta a entrada do número de telefone
-    phoneInput.addEventListener('input', (e) => {
-        // Formata o valor exibido
-        const originalVal = phoneInput.value;
-        const normalized = normalizePhone(originalVal);
+    // Carregar países dinamicamente via DingConnect GetCountries (através da nossa API)
+    async function loadCountries() {
+        if (countryLoading) countryLoading.style.display = 'inline-block';
         
-        // Se o usuário apagar o '+', mantemos se ele começar a digitar números
-        if (originalVal !== normalized && normalized.length > 1) {
-            phoneInput.value = normalized;
-        }
+        if (LIVE_MODE) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/public-simulator/countries`);
+                if (!response.ok) throw new Error('API Error');
+                const countries = await response.json(); // Array de { code: "HT", name: "Haiti" }
+                
+                countrySelect.innerHTML = '';
+                const placeholder = document.createElement('option');
+                placeholder.value = '';
+                placeholder.textContent = t('select_country_first');
+                countrySelect.appendChild(placeholder);
 
-        const match = detectCountryFromValue(phoneInput.value);
-
-        if (match) {
-            detectedCountry = match;
-            if (countryFlag) countryFlag.textContent = match.flag;
-            if (detectedCountryName) {
-                detectedCountryName.textContent = `${match.name} (${match.prefix})`;
-                detectedCountryName.style.color = 'var(--accent-green)';
+                countries.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c.code;
+                    opt.textContent = c.name;
+                    countrySelect.appendChild(opt);
+                });
+            } catch (err) {
+                console.warn("Falha ao consultar GetCountries. Ativando fallback.", err);
+                loadFallbackCountries();
             }
-            if (btnOk) btnOk.disabled = false;
         } else {
-            detectedCountry = null;
-            if (countryFlag) countryFlag.textContent = '🌐';
-            if (detectedCountryName) {
-                detectedCountryName.textContent = '';
-            }
-            if (btnOk) btnOk.disabled = true;
+            loadFallbackCountries();
+        }
+        
+        if (countryLoading) countryLoading.style.display = 'none';
+    }
 
-            // Oculta blocos seguintes se o país sumir
+    function loadFallbackCountries() {
+        countrySelect.innerHTML = '';
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = t('select_country_first');
+        countrySelect.appendChild(placeholder);
+
+        fallbackCountries.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.code;
+            opt.textContent = `${c.name} (${c.currency})`;
+            countrySelect.appendChild(opt);
+        });
+    }
+
+    // Carregar operadores ao selecionar o país via DingConnect GetProviders
+    async function handleCountryChange() {
+        const countryCode = countrySelect.value;
+        if (!countryCode) {
             if (operatorContainer) operatorContainer.style.display = 'none';
             if (amountContainer) amountContainer.style.display = 'none';
             if (resultContainer) resultContainer.style.display = 'none';
             if (appDownloadContainer) appDownloadContainer.style.display = 'none';
+            return;
         }
-    });
 
-    // Clique no botão OK
-    if (btnOk) {
-        btnOk.addEventListener('click', async () => {
-            if (!detectedCountry) return;
-
-            // Mostrar animação de carregamento circular no campo do país
-            if (countryLoading) countryLoading.style.display = 'inline-block';
-
-            // Carrega operadoras
-            await loadOperators(detectedCountry.code);
-
-            if (countryLoading) countryLoading.style.display = 'none';
-
-            // Revela os campos subsequentes com animação suave
-            if (operatorContainer) {
-                operatorContainer.style.display = 'block';
-                operatorContainer.style.animation = 'fadeInUp 0.5s ease-out';
-            }
-            if (amountContainer) {
-                amountContainer.style.display = 'block';
-                amountContainer.style.animation = 'fadeInUp 0.5s ease-out';
-            }
-            if (resultContainer) {
-                resultContainer.style.display = 'block';
-                resultContainer.style.animation = 'fadeInUp 0.5s ease-out';
-            }
-        });
-    }
-
-    // Carregar operadores ao selecionar o país
-    async function loadOperators(countryCode) {
-        if (!operatorSelect) return;
-        operatorSelect.disabled = false;
+        // Exibe o container da operadora
+        if (operatorContainer) {
+            operatorContainer.style.display = 'block';
+            operatorContainer.style.animation = 'fadeInUp 0.5s ease-out';
+        }
+        if (operatorSelect) operatorSelect.disabled = false;
         if (operatorLoading) operatorLoading.style.display = 'inline-block';
 
         if (LIVE_MODE) {
             try {
                 const response = await fetch(`${API_BASE_URL}/public-simulator/operators?countryCode=${countryCode}`);
                 if (!response.ok) throw new Error('API Error');
-                const operators = await response.json(); // Array de strings ou objetos
+                const operators = await response.json(); // Array de { code: "...", name: "..." }
                 
-                operatorSelect.innerHTML = `<option value="">${t('select_operator_placeholder')}</option>`;
-                
-                operators.forEach(op => {
-                    const opt = document.createElement('option');
-                    const opValue = typeof op === 'string' ? op : op.code;
-                    const opText = typeof op === 'string' ? op : op.name;
-                    opt.value = opValue;
-                    opt.textContent = opText;
-                    operatorSelect.appendChild(opt);
-                });
+                if (operatorSelect) {
+                    operatorSelect.innerHTML = `<option value="">${t('select_operator_placeholder')}</option>`;
+                    
+                    operators.forEach(op => {
+                        const opt = document.createElement('option');
+                        const opValue = typeof op === 'string' ? op : op.code;
+                        const opText = typeof op === 'string' ? op : op.name;
+                        opt.value = opValue;
+                        opt.textContent = opText;
+                        operatorSelect.appendChild(opt);
+                    });
+                }
             } catch (err) {
-                console.warn("Erro ao obter operadoras da API, usando dados locais.");
+                console.warn("Erro ao obter GetProviders, usando dados locais.");
                 loadFallbackOperators(countryCode);
             }
         } else {
@@ -452,37 +406,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadFallbackOperators(countryCode) {
         if (!operatorSelect) return;
-        const countryData = countryPrefixes.find(c => c.code === countryCode);
+        const countryData = fallbackCountries.find(c => c.code === countryCode);
         operatorSelect.innerHTML = `<option value="">${t('select_operator_placeholder')}</option>`;
         
         if (countryData) {
             countryData.operators.forEach(op => {
                 const opt = document.createElement('option');
-                opt.value = op.toLowerCase();
-                opt.textContent = op;
+                opt.value = op.code;
+                opt.textContent = op.name;
                 operatorSelect.appendChild(opt);
             });
         }
     }
 
-    // Atualizar cálculo da simulação em tempo real
+    // Atualizar cálculo da simulação em tempo real via DingConnect rates/tariffs
     async function updateSimulation() {
-        const countryCode = detectedCountry ? detectedCountry.code : null;
+        const countryCode = countrySelect.value;
         const operatorCode = operatorSelect ? operatorSelect.value : null;
         const valBRL = amountSlider ? parseInt(amountSlider.value) : 50;
         
         if (amountVal) amountVal.textContent = `R$ ${valBRL},00`;
 
-        if (!countryCode) {
-            if (resultVal) resultVal.textContent = '---';
-            if (resultCurrency) resultCurrency.textContent = '---';
+        if (!countryCode || !operatorCode) {
+            if (amountContainer) amountContainer.style.display = 'none';
+            if (resultContainer) resultContainer.style.display = 'none';
             if (appDownloadContainer) appDownloadContainer.style.display = 'none';
             return;
         }
 
+        // Ativar slider e exibição de resultados
+        if (amountContainer) {
+            amountContainer.style.display = 'block';
+            amountContainer.style.animation = 'fadeInUp 0.5s ease-out';
+        }
+        if (resultContainer) {
+            resultContainer.style.display = 'block';
+            resultContainer.style.animation = 'fadeInUp 0.5s ease-out';
+        }
+
         if (LIVE_MODE) {
             try {
-                const response = await fetch(`${API_BASE_URL}/public-simulator/estimate?countryCode=${countryCode}&amountBrl=${valBRL}&operatorCode=${operatorCode || ''}`);
+                const response = await fetch(`${API_BASE_URL}/public-simulator/estimate?countryCode=${countryCode}&amountBrl=${valBRL}&operatorCode=${operatorCode}`);
                 if (!response.ok) throw new Error('Estimate API Error');
                 const data = await response.json();
 
@@ -512,7 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateLocalSimulation(countryCode, valBRL) {
-        const countryData = countryPrefixes.find(c => c.code === countryCode);
+        const countryData = fallbackCountries.find(c => c.code === countryCode);
         if (countryData) {
             const calculatedValue = valBRL * countryData.rate;
             let formattedAmount;
@@ -532,6 +496,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Eventos do Simulador
+    if (countrySelect) countrySelect.addEventListener('change', handleCountryChange);
     if (operatorSelect) operatorSelect.addEventListener('change', updateSimulation);
     if (amountSlider) amountSlider.addEventListener('input', updateSimulation);
+
+    // Inicialização
+    loadCountries();
 });
