@@ -351,6 +351,213 @@
                 display: none !important;
             }
         }
+
+
+        /* ===== PHONE INPUT ===== */
+.phone-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.phone-prefix {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.6rem 1rem;
+    border-radius: 8px 0 0 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--dark);
+    white-space: nowrap;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: none;
+}
+
+#phone-number {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0 8px 8px 0;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#phone-number:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.1);
+}
+
+.country-flag-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+#country-flag {
+    width: 32px;
+    height: 24px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+#country-name-display {
+    font-weight: 500;
+}
+
+.validate-btn {
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    background: var(--primary-blue);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.validate-btn:hover {
+    background: #003d99;
+    transform: translateY(-2px);
+}
+
+.validate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .phone-input-wrapper {
+        flex-wrap: wrap;
+    }
+    
+    .phone-prefix {
+        border-radius: 8px;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    #phone-number {
+        border-radius: 8px;
+    }
+}
+
+
+/* ===== PHONE INPUT ===== */
+.phone-input-wrapper {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+}
+
+.phone-prefix {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.6rem 1rem;
+    border-radius: 8px 0 0 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--dark);
+    white-space: nowrap;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: none;
+    min-width: 80px;
+    transition: all 0.3s ease;
+}
+
+#flag-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+#country-code-display {
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+#phone-number {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0 8px 8px 0;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+    min-width: 200px;
+}
+
+#phone-number:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.1);
+}
+
+.country-name-display {
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+    min-height: 2rem;
+    transition: all 0.3s ease;
+}
+
+.country-name-display.detected {
+    color: var(--accent-green);
+    font-weight: 600;
+}
+
+.validate-btn {
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    background: var(--primary-blue);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.validate-btn:hover {
+    background: #003d99;
+    transform: translateY(-2px);
+}
+
+.validate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .phone-input-wrapper {
+        flex-wrap: wrap;
+    }
+    
+    .phone-prefix {
+        border-radius: 8px;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        min-width: 70px;
+    }
+    
+    #phone-number {
+        border-radius: 8px;
+        min-width: 150px;
+    }
+    
+    #flag-icon {
+        font-size: 1.2rem;
+    }
+}
     </style>
 </head>
 
@@ -427,57 +634,59 @@
                 Simule sua Próxima Recarga
             </h2>
 
-            <!-- =====================================
-                 PAÍS
-                 ===================================== -->
+          <!-- =====================================
+     NUMÉRO DE TÉLÉPHONE
+     ===================================== -->
 
-            <div class="form-group">
-                <label for="country" data-i18n="simulator.country">País de Destino</label>
-                <div class="select-wrapper">
-                    <select id="country" disabled>
-                        <option value="" data-i18n="simulator.loading_countries">Carregando países...</option>
-                    </select>
-                    <span id="country-loading" class="loading-indicator" data-i18n="simulator.loading">Carregando...</span>
-                </div>
-            </div>
+<div class="form-group">
+    <label for="phone-number" data-i18n="simulator.phone">Número de Telefone</label>
+    <div class="phone-input-wrapper">
+    <img id="country-flag-icon" 
+         src="" 
+         alt="Drapeau" 
+         style="width:32px; height:24px; border-radius:4px; object-fit:cover; display:none;">
+    <span class="phone-prefix" id="phone-prefix">+</span>
+    <input type="tel" id="phone-number" class="input" placeholder="DDD + Número" autocomplete="tel">
+</div>
+    <div id="country-name-display" class="country-name-display">Selecione um país ou digite o código</div>
+</div>
 
-            <!-- =====================================
-                 OPERADORA
-                 ===================================== -->
+<!-- =====================================
+     OPÉRATEUR (affiché après validation)
+     ===================================== -->
 
-            <div class="form-group">
-                <label for="operator" data-i18n="simulator.operator">Selecione a Operadora</label>
-                <div class="select-wrapper">
-                    <select id="operator" disabled>
-                        <option value="" data-i18n="simulator.select_country_first">Selecione um país primeiro</option>
-                    </select>
-                    <span id="operator-loading" class="loading-indicator" data-i18n="simulator.loading">Carregando...</span>
-                </div>
-            </div>
+<div class="form-group" id="operator-group" style="display:none;">
+    <label for="operator" data-i18n="simulator.operator">Selecione a Operadora</label>
+    <div class="select-wrapper">
+        <select id="operator" disabled>
+            <option value="" data-i18n="simulator.select_operator_placeholder">-- Selecione a Operadora --</option>
+        </select>
+    </div>
+</div>
 
-            <!-- =====================================
-                 VALOR DA RECARGA
-                 ===================================== -->
+<!-- =====================================
+     VALOR DA RECARGA
+     ===================================== -->
 
-            <div class="form-group">
-                <label for="amount-slider" data-i18n="simulator.amount">Valor da Recarga</label>
-                <div class="amount-value">
-                    <span id="amount-val">R$ 10,00</span>
-                </div>
-                <input type="range" id="amount-slider" min="10" max="100" step="5" value="10">
-            </div>
+<div class="form-group" id="amount-group" style="display:none;">
+    <label for="amount-slider" data-i18n="simulator.amount">Valor da Recarga</label>
+    <div class="amount-value">
+        <span id="amount-val">R$ 10,00</span>
+    </div>
+    <input type="range" id="amount-slider" min="10" max="100" step="5" value="10">
+</div>
 
-            <!-- =====================================
-                 RESULTADO
-                 ===================================== -->
+<!-- =====================================
+     RÉSULTAT
+     ===================================== -->
 
-            <div class="simulation-result">
-                <div class="simulation-result-label" data-i18n="simulator.result_label">Valor estimado que o destinatário receberá</div>
-                <div>
-                    <span id="result-val">—</span>
-                    <span id="result-currency"></span>
-                </div>
-            </div>
+<div class="simulation-result" id="result-group" style="display:none;">
+    <div class="simulation-result-label" data-i18n="simulator.result_label">Valor estimado que o destinatário receberá</div>
+    <div>
+        <span id="result-val">—</span>
+        <span id="result-currency"></span>
+    </div>
+</div>
 
             <!-- =====================================
                  ERRO

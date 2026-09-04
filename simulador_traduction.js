@@ -33,6 +33,10 @@
             "simulator.download_prompt": "Gostou do valor real? Envie essa recarga agora mesmo pelo nosso aplicativo!",
             "simulator.install_app": "Instalar App Intop",
             "simulator.disclaimer": "*Os valores exibidos são baseados em taxas de câmbio consultadas através do sistema integrado DingConnect.",
+            "simulator.phone": "Número de Telefone",
+            "simulator.validate": "Validar Número",
+            "simulator.enter_phone": "Digite o número com DDD",
+            "simulator.detecting": "Detectando país...",
 
             // Footer
             "footer.about": "A forma mais rápida, segura e econômica de enviar recargas de celular para seus amigos e familiares no exterior. Pagamento instantâneo via Pix.",
